@@ -1,0 +1,1 @@
+web: gunicorn medi_proj.wsgi

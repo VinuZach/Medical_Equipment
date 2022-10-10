@@ -1,0 +1,826 @@
+{% extends "baseHhtml.html" %}
+{% block content %}
+{% load static %}
+
+<style>
+.dropdown
+{
+padding:0px
+}
+#floating_container
+{
+display: flex;align-items: center; justify-content: center;margin: 10px 10%;
+    flex-direction: row;
+}
+
+#vertical_statement_hex
+{
+display:none;
+}
+.hexagon:before {
+    content: " ";
+    width: 0; height: 0;
+    border-bottom: 30px solid var(--selected_text_color);
+    border-left: 52px solid transparent;
+    border-right: 52px solid transparent;
+    position: absolute;
+    top: -30px;
+}
+
+.hexagon {
+    margin-top: 30px;
+    width: 104px;
+    height: 60px;
+    background-color: var(--selected_text_color);
+    position: relative;
+}
+
+#horizontal_statement_hex
+{
+display:flex;
+}
+.hexagon:after {
+    content: "";
+    width: 0;
+    left: 0;
+    position: absolute;
+    bottom: -30px;
+    border-top: 30px solid var(--selected_text_color);
+    border-left: 52px solid transparent;
+    border-right: 52px solid transparent;
+}
+
+        #floating_text
+        {
+        display:flex;margin-top: 16%;height: 100%;flex-direction: column;max-width:50%;
+        }
+     .parentDropDown .dropdown
+    {
+       display:none;
+       position: absolute;
+       background:black;
+       box-shadow: 0px 14px 33px -9px rgb(0 0 0 / 75%);
+       border-radius: 5px;
+       border: 1px solid #301B46;
+       margin-top:20px;
+         z-index: 1;
+       padding:10px;
+       min-width: 160px;
+
+    }
+#overlay_text
+{
+font-size: 50px;font-weight: 800; opacity: 1;font-family: sans-serif;
+}
+.dropdown:before {
+  content: "";
+  position: absolute;
+  border-color: rgba(194, 225, 245, 0);
+  border: solid transparent;
+  border-bottom-color: black;
+  border-width: 11px;
+  margin-left: -99px;
+  top: -21px;
+  right: 145px;
+  z-index: 1;
+}
+
+.dropdown:after {
+    content: "";
+    position: absolute;
+    right: 145px;
+    top: -21px;
+    width: 0;
+    height: 0;
+    border: solid transparent;
+    border-width: 10px;
+    border-bottom-color: #2B1A41;
+    z-index: 0;
+}
+
+
+ .menuItemHover:hover
+    {
+      color: var(--selected_text_color);
+    }
+
+     .parentDropDown:hover .dropdown
+    {
+       display:block;
+    }
+    .parentDropDown
+    {
+      padding-bottom:20px;
+      padding-left:10px;
+    }
+
+
+
+    .dropdown .submenu
+    {
+    color:#c9c9c9;
+    font-size: 15px;
+      text-decoration: none;
+
+    }
+
+    .dropdown .submenu:hover
+    {
+    color:white;
+    font-size: 15px;
+    text-decoration: none;
+  min-width: 80px;
+    }
+
+ul>li
+{
+  list-style-type: none;
+}
+
+   li>a
+    {
+     font-size: 12px;
+     font-weight: 700;
+     color: var(--unselected_text_color);
+
+    }
+
+    #menu_button
+    {
+     display: none;
+    }
+
+    .container
+    {
+      display: inline-block;
+      cursor: pointer;
+    }
+
+.bar1, .bar2, .bar3
+ {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+ }
+
+.change .bar1
+{
+  transform: translate(0, 11px) rotate(-45deg);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3
+{
+  transform: translate(0, -11px) rotate(45deg);
+}
+#top_bar
+{
+display:flex;
+flex-direction: row;
+align-items: center;
+width: fit-content;
+padding-top:30px;
+padding-bottom:30px;
+}
+   #menu_parent
+    {
+        display:flex
+   }
+    .sidenav
+    {
+     display:none;
+    }
+   @media only screen and (max-width: 1220px)
+    {
+
+  #floating_text
+        {
+        display:flex;margin-top: 16%;height: 100%;flex-direction: column;max-width:100%;
+        }
+#floating_container
+{
+display: flex;align-items: center; justify-content: center;margin: 10px 10%;
+    flex-direction: column;
+}
+    #overlay_text
+{
+font-size: 20px;
+}
+     .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+ display:block;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+
+  margin-top:130px;
+
+
+}
+
+        #menu_parent
+            {
+             display:none;
+            }
+
+        #menu_button
+            {
+              display: block;
+              display:flex; flex-direction: column; justify-content: center;
+            }
+        #icon
+            {
+             width:80%;
+             margin:0px;
+            }
+    }
+
+   @media only screen and (max-width: 900px)
+   {
+   #vertical_statement_hex
+{
+display:block;
+}
+
+  #horizontal_statement_hex
+{
+display:none;
+}
+   }
+   @media only screen and (max-width: 600px)
+   {
+
+#vertical_statement_hex
+{
+display:block;
+}
+   .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+ display:block;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  margin-top:115px;
+}
+
+        .change .bar1
+        {
+          transform: translate(0, 8px) rotate(-45deg);
+        }
+
+        .change .bar2 {opacity: 0;}
+
+        .change .bar3
+        {
+          transform: translate(0, -8px) rotate(45deg);
+        }
+
+    #menu_icon
+    {
+     margin: 0px 10px 0px 10px;
+    }
+    .bar1, .bar2, .bar3
+     {
+      width: 30px;
+      height: 2px;
+      background-color: #333;
+      margin: 6px 0;
+      transition: 0.4s;
+     }
+      #top_bar
+        {
+        display:flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        width: fit-content;
+        padding-top:10px;
+        }
+
+            #menu_button
+            {
+              display: block;
+              display:flex; flex-direction: row;     justify-content: space-between;
+              width:100%;
+
+            }
+   }
+
+
+
+
+
+
+
+
+
+.sidenav a {
+  padding: 8px 8px 8px 0px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+
+
+.mainmenu >a:hover
+{
+ color: #f1f1f1;
+}
+
+
+#sliderimage{
+height: 35em;
+    width: 100%;
+    object-fit: cover;
+
+}
+.sidemenu_submenu
+{
+    margin-left:30px;
+
+
+}
+
+.container {
+  position: relative;
+  width: 100%;
+
+}
+.shadowtoimage {
+  position: absolute;
+  bottom: 0;
+  top:0;
+    margin-bottom: 5px;
+  background: rgba(0, 0, 0, 0.35); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+
+  transition: .5s ease;
+  opacity:1;
+
+  font-size: 20px;
+
+  text-align: center;
+}
+.overlay
+{
+position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+
+  border: none;
+  text-align: center
+}
+
+
+
+#overlay_button{
+    background: #0d24ff;
+    color: #fff;
+    margin: 20px;
+    width: fit-content;
+    border-radius: 100px;
+    border: 2px solid #0d24ff;
+    font-size: 12px;
+    padding: 20px 60px;
+        text-transform: uppercase;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+
+<div style="display:flex;justify-content: center;">
+    <div id="top_bar">
+        <img id="icon" src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/logo.jpg"
+             class="horizontal_spacing_40">
+
+        <ul id="menu_parent">
+            {% for menuItem in menuLists.menuList%}
+            <li class="parentDropDown"><a href="#"
+                                          class="horizontal_spacing_10 text_allCaps menuItemHover">{{menuItem.menu_title}}</a>
+
+                {% if menuItem.menu_subMenu|length > 0 %}
+
+                <ul class="dropdown">
+                    {% for subMenu in menuItem.menu_subMenu %}
+
+                    <li style="padding-top: 5px;padding-bottom: 5px; padding-right:10px;"><a
+                            class="submenu"
+                            href="#">{{subMenu}}
+                    </a></li>
+                    {% endfor %}
+                </ul>
+
+                {% endif %}
+            </li>
+
+
+            {% endfor %}
+
+
+        </ul>
+
+        <!--                      BUTTON FOR SIDE MENU ON   max-width: 1070px      -->
+        <div id="menu_button">
+            <div style="text-align: center; margin: 0px 10px 0px 10px;     color: var(--selected_text_color);  font-size: 12px;  font-weight: 700;  align-self: center;">
+
+            </div>
+            <div id="menu_icon" class="container horizontal_spacing_50"
+                 onclick="showSideMenu_inMed_inSmall_screen(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="mySidenav" class="sidenav">
+
+    {% for menuItem in menuLists.menuList%}
+    <ul id="sidemenulist">
+        <li onmouseover="showSubMenu_inMed_inSmall_screen()">
+            <a href="#" class="sidemenu">{{menuItem.menu_title}}</a>
+            {% if menuItem.menu_subMenu|length > 0 %}
+            {% for subMenu in menuItem.menu_subMenu %}
+            <ul class="sidemenu_submenu">
+                <li><a href="#">{{subMenu}}</a></li>
+            </ul>
+            {% endfor %}
+            {% endif %}
+        </li>
+
+
+    </ul>
+    {% endfor %}
+
+
+</div>
+
+<!--slider image with overlay text and button-->
+<div class="container">
+
+
+    <img src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/slider_image1.jpg"
+         id="sliderimage"/>
+    <div class="shadowtoimage"></div>
+    <div class="overlay">
+        <div style="display: flex; flex-direction: column;   align-items: center;">
+
+
+            <span id="overlay_text" style="">For Admission</span>
+
+            <button id="overlay_button">Register now
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<!--welcome and floating buttons-->
+
+<div style="position: absolute;
+    margin-top: -165px;width:100%">
+    <div style="display:flex;flex-direction: column; justify-content: center;margin: 20px;">
+        <div id="floating_container">
+            <!--                    1nd button-->
+            <div style="display:flex;flex-direction: column; justify-content: center;margin: 20px;">
+                <div style="background: #FFC300;display:flex;
+                padding: 20px 60px;
+                    margin-top: -10%;
+                    flex-direction: column;">
+                <span style="color: white;font-size: 30px;width: max-content;font-weight: 200; text-transform: uppercase;
+                         margin: 10px;">   For Admission</span>
+                    <span style="text-transform: uppercase; letter-spacing: 3px;width: fit-content;font-size: 12px;
+                        padding: 5px; border: 1px solid black;">Register Now</span>
+                </div>
+
+
+                <!--                    2nd button-->
+                <div style="background: var(--selected_text_color);display:flex;
+                padding: 20px 60px;flex-direction: column;margin-top:20px">
+                    <span style="color: white;font-size: 30px;font-weight: 200; margin: 10px;text-transform: uppercase;">   Our Courses</span>
+                    <span style="text-transform: uppercase;letter-spacing: 3px;width: fit-content;font-size: 12px;
+                             padding: 5px;color: white;border: 1px solid black;">Register Now</span>
+                </div>
+
+            </div>
+
+            <div id="floating_text">
+                <div style="color: #000;font-family: sans-serif;margin: 0 0 20px 0;font-size: 30px;font-weight: 700;
+                        line-height: 1.5;">
+                    Welcome to Matha Institute of Paramedical Sciences and Nursing School.
+                </div>
+                <div>
+                    Since our inception in 2016, Matha Institute, also known as TKN institution, functioned with the
+                    lofty
+                    vision of imparting progressive education suited to the changing nature of the society, that
+                    provides
+                    100 percent job-oriented courses with excellent coaching and training, with a focus on women's
+                    empowerment.
+                </div>
+
+                <div id="vertical_statement_hex" style="justify-content: center;margin: 5%;align-content: stretch;
+                      flex-direction: row;">
+
+                    <div style="display: flex;align-items: center; justify-content: center;align-content: stretch;
+                     flex-direction: column;">
+                        <div class="hexagon"></div>
+                        <div style=" display: flex;  align-items: center;justify-content: center;height: inherit;margin-top: -28px;background: #f2f3f7;padding-top: 87px;min-width: 210px; min-height: 150px;">
+                            <div>
+                                <div style="font-size: 16px;   font-weight: 700;   text-transform: uppercase;   text-align: center;">
+                                    VALUES
+                                </div>
+                                <div style="padding:25px;text-align: center;font-family: sans-serif;font-weight: 300;
+                        font-size: 16px;line-height: 1.5;color: gray;">
+                                    As individuals and together, Matha Institution is built on the foundations of moral
+                                    and
+                                    ethical standards that are in line with the aim of keeping the education, health and
+                                    welfare
+                                    of society at the forefront.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex;align-items: center; justify-content: center;align-content: stretch;
+                     flex-direction: column;   margin: 40px 0px 0px 20px;   ">
+                        <div class="hexagon"></div>
+                        <div style=" display: flex;  align-items: center;justify-content: center;height: inherit;margin-top: -28px;background: #f2f3f7;padding-top: 87px;min-width: 210px; min-height: 150px;">
+                            <div>
+                                <div style="font-size: 16px;   font-weight: 700;   text-transform: uppercase;   text-align: center;">
+                                    MISSION
+                                </div>
+                                <div style="padding:25px;text-align: center;font-family: sans-serif;font-weight: 300;
+                        font-size: 16px;line-height: 1.5;color: gray;">
+                                    Development of self-existence in women through the provision of student-centered,
+                                    quality
+                                    education defined by excellence, efficiency and higher values.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div style="display: flex;align-items: center; justify-content: center;;align-content: stretch;
+                     flex-direction: column;margin: 40px 0px 0px 20px; ">
+                        <div class="hexagon"></div>
+                        <div style=" display: flex;  align-items: center;justify-content: center;height: inherit;margin-top: -28px;background: #f2f3f7;padding-top: 87px;min-width: 210px; min-height: 150px;">
+                            <div>
+                                <div style="font-size: 16px;   font-weight: 700;   text-transform: uppercase;   text-align: center;">
+                                    VISION
+                                </div>
+                                <div style="padding:25px;text-align: center;font-family: sans-serif;font-weight: 300;
+                        font-size: 16px;line-height: 1.5;color: gray;">
+                                    In everything we do, we strive to be the best, always striving for excellence
+                                    committed to
+                                    uplifting society and upholding noble principles.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex;align-items: center; justify-content: center;align-content: stretch;
+                     flex-direction: column;margin: 40px 0px 0px 20px; ">
+                        <div class="hexagon"></div>
+                        <div style=" display: flex;  align-items: center;justify-content: center;height: inherit;margin-top: -28px;background: #f2f3f7;padding-top: 87px;min-width: 210px; min-height: 150px;">
+                            <div>
+                                <div style="font-size: 16px;   font-weight: 700;   text-transform: uppercase;   text-align: center;">
+                                    OBJECTIVES
+                                </div>
+                                <div style="padding:25px;text-align: center;font-family: sans-serif;font-weight: 300;
+                        font-size: 16px;line-height: 1.5;color: gray;">
+                                    At Matha Institution, we strive to provide all people with the dignity of job,
+                                    particularly
+                                    in the fields of education and medicine, to all those who come to us with deep
+                                    expectations.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--        horizontal items/vision,mission-->
+        <div id="horizontal_statement_hex" style="align-items: center; justify-content: center;margin: 5%;align-content: stretch;
+                      flex-direction: row;height:500px">
+
+            <div style="display: flex;align-items: center; justify-content: center;align-content: stretch;
+                     flex-direction: column;height: inherit;    max-width: 250px;">
+                <div class="hexagon"></div>
+                <div style=" display: flex;  align-items: center;justify-content: center;height: inherit;margin-top: -28px;background: #f2f3f7;padding-top: 87px;min-width: 210px; min-height: 150px;">
+                    <div>
+                        <div style="font-size: 16px;   font-weight: 700;   text-transform: uppercase;   text-align: center;">
+                            VALUES
+                        </div>
+                        <div style="padding:25px;text-align: center;font-family: sans-serif;font-weight: 300;
+                        font-size: 16px;line-height: 1.5;color: gray;">
+                            As individuals and together, Matha Institution is built on the foundations of moral and
+                            ethical standards that are in line with the aim of keeping the education, health and welfare
+                            of society at the forefront.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex;align-items: center; justify-content: center;align-content: stretch;
+                     flex-direction: column;height: inherit;    margin: 0px 0px 0px 20px;    max-width: 250px;">
+                <div class="hexagon"></div>
+                <div style=" display: flex;  align-items: center;justify-content: center;height: inherit;margin-top: -28px;background: #f2f3f7;padding-top: 87px;min-width: 210px; min-height: 150px;">
+                    <div>
+                        <div style="font-size: 16px;   font-weight: 700;   text-transform: uppercase;   text-align: center;">
+                            MISSION
+                        </div>
+                        <div style="padding:25px;text-align: center;font-family: sans-serif;font-weight: 300;
+                        font-size: 16px;line-height: 1.5;color: gray;">
+                            Development of self-existence in women through the provision of student-centered, quality
+                            education defined by excellence, efficiency and higher values.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="display: flex;align-items: center; justify-content: center;;align-content: stretch;
+                     flex-direction: column;height: inherit;    margin: 0px 0px 0px 20px;    max-width: 250px;">
+                <div class="hexagon"></div>
+                <div style=" display: flex;  align-items: center;justify-content: center;height: inherit;margin-top: -28px;background: #f2f3f7;padding-top: 87px;min-width: 210px; min-height: 150px;">
+                    <div>
+                        <div style="font-size: 16px;   font-weight: 700;   text-transform: uppercase;   text-align: center;">
+                            VISION
+                        </div>
+                        <div style="padding:25px;text-align: center;font-family: sans-serif;font-weight: 300;
+                        font-size: 16px;line-height: 1.5;color: gray;">
+                            In everything we do, we strive to be the best, always striving for excellence committed to
+                            uplifting society and upholding noble principles.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex;align-items: center; justify-content: center;align-content: stretch;
+                     flex-direction: column;height: inherit;    margin: 0px 0px 0px 20px;    max-width: 250px;">
+                <div class="hexagon"></div>
+                <div style=" display: flex;  align-items: center;justify-content: center;height: inherit;margin-top: -28px;background: #f2f3f7;padding-top: 87px;min-width: 210px; min-height: 150px;">
+                    <div>
+                        <div style="font-size: 16px;   font-weight: 700;   text-transform: uppercase;   text-align: center;">
+                            OBJECTIVES
+                        </div>
+                        <div style="padding:25px;text-align: center;font-family: sans-serif;font-weight: 300;
+                        font-size: 16px;line-height: 1.5;color: gray;">
+                            At Matha Institution, we strive to provide all people with the dignity of job, particularly
+                            in the fields of education and medicine, to all those who come to us with deep expectations.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<script>
+var siderImage=document.getElementById(" sliderimage
+            ")
+            var overlay_text=document.getElementById("overlay_text")
+            var overlay_button=document.getElementById("overlay_button")
+            var interval_timer=1;
+            var t = setInterval(function() {
+            if(!isPaused) {
+            if(interval_timer%2==0)
+            {
+            siderImage.src = "{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/slider_image1.jpg"
+            overlay_text.innerHTML ="For Admission"
+            overlay_button.innerHTML ="Register now"
+            }
+            else
+            {
+            siderImage.src = "{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/slider_image2.jpg"
+            overlay_text.innerHTML ="Online Free Course"
+
+            overlay_button.innerHTML ="Free trial"
+            }
+            console.log(interval_timer)
+            interval_timer++;
+            siderImage.style.opacity = 0;
+            var tick = function () {
+            siderImage.style.opacity = +siderImage.style.opacity + 0.05;
+            if (+siderImage.style.opacity < 1) {
+            var x = (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 20)
+            }
+            };
+            tick();
+            }
+            }, 8000);
+
+            function stopTimer() {
+            clearTimeout(t);
+            }
+            function play(){
+            isPaused = false;
+            }
+            function pause(){
+            isPaused = true;
+            }
+            play();
+            function showSubMenu_inMed_inSmall_screen()
+            {
+            var mainMenu=document.getElementById("sidemenulist");
+            console.log(mainMenu)
+            }
+            function showSideMenu_inMed_inSmall_screen(x) {
+            var nav_bar=document.getElementById("mySidenav") ;
+            x.classList.toggle("change");
+            if(nav_bar.style.width == "100%")
+            {
+            nav_bar.style.width = "0px"
+            }
+            else
+            {
+            nav_bar.style.width = "100%"
+            }
+            }
+
+
+
+
+
+
+
+
+
+
+
+</script>
+{% endblock %}
