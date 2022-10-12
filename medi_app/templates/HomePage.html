@@ -50,6 +50,20 @@ display:flex;
     border-right: 52px solid transparent;
 }
 
+#moreButton:hover
+{
+color:white;
+}
+#moreButton
+{
+color:gray;
+}
+
+
+
+   #newsItemsParent{
+flex-direction: row;
+            }
         #floating_text
         {
         display:flex;margin-top: 16%;height: 100%;flex-direction: column;max-width:50%;
@@ -246,6 +260,14 @@ font-size: 20px;
 
    @media only screen and (max-width: 900px)
    {
+
+          #newsItemsParent{
+flex-direction: column;
+            }
+.mini_full_screen
+{
+width:112%
+}
    #vertical_statement_hex
 {
 display:block;
@@ -409,32 +431,8 @@ position: absolute;
     border: 2px solid #0d24ff;
     font-size: 12px;
     padding: 20px 60px;
-        text-transform: uppercase;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        text-transform: uppercase;
+        }
 
 
 
@@ -513,6 +511,7 @@ position: absolute;
 
 
     </ul>
+
     {% endfor %}
 
 
@@ -745,12 +744,241 @@ position: absolute;
 
         </div>
     </div>
-</div>
+
+    <div id="newsContainer"
+         style="background: #1836af;display: flex;justify-content: center;padding-top:50px;padding-bottom:100px"
+         class="mini_full_screen">
+        <div style="display: flex;flex-direction: column; align-content: center; align-items: center;color: #fff;">
+
+            <div style="font-size: 14px;opacity: 0.8;    text-transform: uppercase;   font-family: sans-serif;">Most
+                recent news &amp;
+                events
+            </div>
+            <div style="padding-top: 10px;font-size: 40px;font-weight: 600;font-family: sans-serif;">LATEST UPDATES
+            </div>
+
+            <div id="newsItemsParent"
+                 style="overflow-x: hidden;display: flex; align-content: center; align-items: center;color: #fff;">
+
+                <div id="newsItems"
+                     style="display: flex;flex-direction: column; align-content: center; align-items: center;color: #fff;margin:0px 10px">
+                    <div style="box-shadow: 0 10px 38px rgb(0 0 0 / 42%), 0 12px 12px rgb(0 0 0 / 42%);    cursor: grab;;display: flex;justify-content: center; border-radius: 5px;text-align: center;margin-top: 20%; background: white;padding:20px 45px;color:black;min-width: 200px;min-height: 100px;    width: 180px;">
+                        <div id="newHeader" style="padding-bottom: 50px;">Reading day
+
+                        </div>
+                    </div>
+                    <div id="moreButton"
+                         style="padding: 17px 50px;background: var(--selected_text_color);margin-top: -29px;border-radius: 16px;    cursor: pointer;">
+                        Know more
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!--    available courses section-->
+    <div id="courseParent" style="align-items: center; justify-content: center;margin: 5% 0px;align-content: stretch;
+                      flex-direction: row;height:500px">
+
+        <h2 style="font-size: 30px; font-weight: 900;text-transform: uppercase; color: #000;font-family: sans-serif; text-align: center;">
+            COURSES WE OFFERED</h2>
+        <p style="margin-bottom: 20px;text-align: center;">At Matha Institution, we offer courses with the noble goal of
+            delivering high-quality education</p>
+
+
+        <br>
+        <!--        course item-->
+        <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr));justify-content: center; gap: 20px;    margin: 3%;">
+            <div id="courseItem"
+                 style="width: max-content;background: var(--selected_text_color); color: white;margin:10px;    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;    max-width: 100%;">
+                <img id="courseImage"
+                     src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}course_images/course1.jpg" style="    height: 300px;
+                    width: 100%;    flex: 1;">
+
+                <div style="       height: 120px;display: flex;
+    flex-direction: column;
+    justify-content: space-between;">
+                    <div id="courseTitle" style="padding:18px 20px;font-size: 15px; margin-bottom: 5px; font-weight: 500;text-transform: uppercase;
+                    color: #fff;">
+                        asdsadsd
+                    </div>
+                    <div id="courseDuration" style="padding:15px;font-size: 13px; color: rgba(255, 255, 255, 0.7);">
+                        duration
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div style="background:black;    padding-top: 6%;
+    padding-bottom: 5%;;color:white;display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr));justify-content: center; gap: 100px;">
+            <div>
+          <span style="    margin-bottom: 30px;
+    font-size: 13px;
+    color: #e6e6e6;
+    text-transform: uppercase;
+    font-weight: 700;">ABOUT MATHA INSTITUTE</span>
+                <div style="font-size: 14px;
+    line-height: 1.8;    color: rgba(255, 255, 255, 0.6);
+    margin-top: 40px;">Since our inception in 2016, Matha Institute, also known as TKN institution, functioned with the
+                    lofty
+                    vision of imparting progressive education suited to the changing nature of the society, that
+                    provides
+                    100 percent job-oriented courses with excellent coaching and training, with a focus on women's
+                    empowerment.
+                </div>
+            </div>
+
+            <div>
+                Quick links
+
+                <div style="margin-top:20px;    display: flex; flex-direction: column;">
+                    {% for menuItem in menuLists.menuList%}
+                    <a href="#" style="    font-size: 14px; color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px">{{menuItem.menu_title}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                Contact info
+
+                 <div style="margin-top:20px;    display: flex; flex-direction: column;">
+
+                    <div style="     font-size: 14px;color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px">Second Floor, T.K.N Sastha Hospital, Marayoor</div>
+                    <div style="    font-size: 14px; color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px"> 8281062950, 8281241950</div>
+                    <div style="    font-size: 14px; color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px">join@mathainstitutemarayoor.com</div>
+                    <div style="    font-size: 14px; color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px"> www.mathainstitutemarayoor.com</div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+        <div style="    padding: 10px;
+    text-align: center;
+    color: white;
+    background: black;    font-size: 60%;
+"> © Copyright ©2022 All rights reserved | This template is made with by Catchacloud Technologies.Pvt.Ltd
+        </div>
+    </div>
 
 </div>
 
 
 <script>
+
+  const newsItemParent=document.getElementById("newsItemsParent")
+
+
+let mouseDown = false;
+let startX, scrollLeft;
+
+let startDragging = function (e) {
+  mouseDown = true;
+  startX = e.pageX - newsItemParent.offsetLeft;
+  scrollLeft = newsItemParent.scrollLeft;
+};
+let stopDragging = function (event) {
+  mouseDown = false;
+};
+
+newsItemParent.addEventListener('mousemove', (e) => {
+  e.preventDefault();
+  if(!mouseDown) { return; }
+  const x = e.pageX - newsItemParent.offsetLeft;
+  const scroll = x - startX;
+  newsItemParent.scrollLeft = scrollLeft - scroll;
+});
+
+// Add the event listeners
+newsItemParent.addEventListener('mousedown', startDragging, false);
+newsItemParent.addEventListener('mouseup', stopDragging, false);
+newsItemParent.addEventListener('mouseleave', stopDragging, false);
+
+
+var myScrollFunc = function() {
+  var y = window.scrollY;
+  if (y >= 800) {
+   console.log("visible")
+   fetch('{{ request.scheme }}://{{ request.get_host }}/home/getAllNewsList')
+        .then(response =>{
+            return response.json();
+        }).then(data =>{
+            const newsItem=document.querySelector("#newsItems")
+    if(data.newsList.length==0)
+    document.getElementById("newsContainer").style="display:none;"
+
+        for (let i = 0; i < data.newsList.length; i++) {
+
+              let clone ;
+              if(i==0)
+              clone=newsItem
+              else
+             clone = newsItem.cloneNode(true);
+            clone.querySelector("#moreButton").addEventListener('click', function(clone1) {
+
+                 location.href = "{{ request.scheme }}://{{ request.get_host }}"+data.newsList[i].imageData;
+                console.log("{{ request.scheme }}://{{ request.get_host }}"+data.newsList[i].imageData);
+            });
+
+
+            clone.querySelector("#newHeader").innerHTML = data.newsList[i].newsHeading
+                 if(i!=0)
+                 {
+            clone.id = 'elem2';
+            newsItemParent.append(clone);
+            }
+
+}
+    callCourseApi()
+        })
+   window.removeEventListener('scroll', myScrollFunc);   newHeader
+
+  }
+};
+function callCourseApi()
+{
+   fetch('{{ request.scheme }}://{{ request.get_host }}/home/getCourseDetails')
+        .then(response =>{
+            return response.json();
+        }).then(data =>{
+
+  const courseItem=document.querySelector("#courseItem")
+  const courseParent=document.querySelector("#courseParent")
+              if(data.courseDetailsList.length==0)
+    document.getElementById("courseParent").style="display:none;"
+
+        for (let i = 0; i < data.courseDetailsList.length; i++) {
+
+              let clone ;
+              if(i==0)
+              clone=courseItem
+              else
+             clone = courseItem.cloneNode(true);
+console.log(clone)
+                clone.querySelector("#courseTitle").innerHTML = data.courseDetailsList[i].courseName
+            clone.querySelector("#courseDuration").innerHTML ="Duration : "+ data.courseDetailsList[i].duration
+            clone.querySelector("#courseImage").src = "{{ request.scheme }}://{{ request.get_host }}"+data.courseDetailsList[i].imageData;
+                 if(i!=0)
+                 {
+            clone.id = 'elem2';
+            courseItem.after(clone);
+                 }
+            }
+        })
+}
+
+window.addEventListener("scroll", myScrollFunc);
+
+
+
+
 var siderImage=document.getElementById("sliderimage")
             var overlay_text=document.getElementById("overlay_text")
             var overlay_button=document.getElementById("overlay_button")
@@ -770,7 +998,7 @@ var siderImage=document.getElementById("sliderimage")
 
             overlay_button.innerHTML ="Free trial"
             }
-            console.log(interval_timer)
+
             interval_timer++;
             siderImage.style.opacity = 0;
             var tick = function () {

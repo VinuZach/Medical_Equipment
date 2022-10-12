@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .models import *
 
 # Create your views here.
 
@@ -34,3 +34,16 @@ def displayHome(request):
     }
 
     return render(request, 'HomePage.html', {"menuLists": menuItems})
+
+
+def uploadNews_admin(request):
+    if request.method == "POST":
+        try:
+            text = request.POST.get("headerData")
+            uploaded_file = request.FILES['document']
+            print(uploaded_file.name)
+            LatestNewsAndUpdates.objects.create(newsHeading=text,imageData=uploaded_file)
+            print(text)
+        except Exception as e:
+            print(e)
+    return render(request, 'admin/admin_upload_news.html', {})

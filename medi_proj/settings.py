@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-k-9d3pp%&qz#5ejer^x8a8r_0w+xvva)jz-erf5!ykn!c05g#t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["medical-equipment-dj123.herokuapp.com"]
+ALLOWED_HOSTS = ["127.0.0.1","medical-equipment-dj123.herokuapp.com"]
 
 AUTH_USER_MODEL = 'medi_app.CustomUser'
 # Application definition
