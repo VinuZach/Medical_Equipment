@@ -28,3 +28,12 @@ class CourseDetails(models.Model):
     imageData = models.ImageField(upload_to='course_images/', default=None)
     courseName = models.CharField(blank=False, unique=False, max_length=256)
     duration = models.CharField(blank=False, unique=False, max_length=256)
+
+
+class GallerySections(models.Model):
+    galleryTitle = models.CharField(blank=False, unique=False, max_length=256)
+
+
+class GalleryImages(models.Model):
+    imageData = models.ImageField(upload_to='gallery_images/', default=None)
+    gallery_section = models.ForeignKey(GallerySections, on_delete=models.CASCADE)

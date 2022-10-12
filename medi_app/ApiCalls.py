@@ -14,3 +14,21 @@ def getNewsAndHeaders_api(request):
 def getCourseDetails(request):
     courseDetails = CourseDetails.objects.all()
     return JsonResponse({"courseDetailsList": CourseDataSerializer(courseDetails, many=True).data}, safe=False)
+
+
+@api_view(['GET'])
+def getGallerySections(request):
+    gallerySections = GallerySections.objects.all()
+    return JsonResponse({"courseDetailsList": GallerySectionsSerializer(gallerySections, many=True).data}, safe=False)
+
+
+@api_view(['GET'])
+def getGalleryImages(request):
+    print(request.GET.get("index"))
+    index = request.GET.get("index")
+    if index == "0":
+        print("inside 0")
+        galleryImages = GalleryImages.objects.all()
+    else:
+        galleryImages = GalleryImages.objects.filter(id=index)
+    return JsonResponse({"galleryImages": GalleryImagesSerializer(galleryImages, many=True).data}, safe=False)

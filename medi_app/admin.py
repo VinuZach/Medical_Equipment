@@ -5,3 +5,5 @@ from .models import *
 admin.site.register(CustomUser)
 admin.site.register(LatestNewsAndUpdates)
 admin.site.register(CourseDetails)
+admin.site.register(GalleryImages)
+admin.site.register(GallerySections)

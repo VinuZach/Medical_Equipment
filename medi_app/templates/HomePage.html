@@ -58,7 +58,19 @@ color:white;
 {
 color:gray;
 }
+     #hoverMore
+         {
+              background: #918d8d80;
 
+ opacity:0;
+          }
+
+    #hoverMore:hover
+         {
+              background: #918d8d80;
+              display:flex;
+              opacity:1;
+          }
 
 
    #newsItemsParent{
@@ -210,6 +222,12 @@ padding-bottom:30px;
    @media only screen and (max-width: 1220px)
     {
 
+   #icon
+            {
+             width:80%;
+             margin:0px;
+            }
+
   #floating_text
         {
         display:flex;margin-top: 16%;height: 100%;flex-direction: column;max-width:100%;
@@ -251,11 +269,7 @@ font-size: 20px;
               display: block;
               display:flex; flex-direction: column; justify-content: center;
             }
-        #icon
-            {
-             width:80%;
-             margin:0px;
-            }
+
     }
 
    @media only screen and (max-width: 900px)
@@ -433,6 +447,21 @@ position: absolute;
     padding: 20px 60px;
         text-transform: uppercase;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -790,17 +819,16 @@ position: absolute;
 
         <br>
         <!--        course item-->
-        <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr));justify-content: center; gap: 20px;    margin: 3%;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr));justify-content: center; gap: 20px;    margin: 3%;">
             <div id="courseItem"
                  style="width: max-content;background: var(--selected_text_color); color: white;margin:10px;    display: flex;
     flex-direction: column;
     justify-content: flex-end;    max-width: 100%;">
                 <img id="courseImage"
-                     src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}course_images/course1.jpg" style="    height: 300px;
+                     style="    height: 300px;
                     width: 100%;    flex: 1;">
 
-                <div style="       height: 120px;display: flex;
+                <div style="  height: 120px;display: flex;
     flex-direction: column;
     justify-content: space-between;">
                     <div id="courseTitle" style="padding:18px 20px;font-size: 15px; margin-bottom: 5px; font-weight: 500;text-transform: uppercase;
@@ -815,59 +843,83 @@ position: absolute;
 
 
         </div>
-        <div style="background:black;    padding-top: 6%;
-    padding-bottom: 5%;;color:white;display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr));justify-content: center; gap: 100px;">
-            <div>
-          <span style="    margin-bottom: 30px;
-    font-size: 13px;
-    color: #e6e6e6;
-    text-transform: uppercase;
-    font-weight: 700;">ABOUT MATHA INSTITUTE</span>
-                <div style="font-size: 14px;
-    line-height: 1.8;    color: rgba(255, 255, 255, 0.6);
-    margin-top: 40px;">Since our inception in 2016, Matha Institute, also known as TKN institution, functioned with the
-                    lofty
-                    vision of imparting progressive education suited to the changing nature of the society, that
-                    provides
-                    100 percent job-oriented courses with excellent coaching and training, with a focus on women's
-                    empowerment.
+        <!--        gallery section-->
+        <div id="galleryContainer" style="align-items: center; justify-content: center;margin: 5% 0px;align-content: stretch;
+                      flex-direction: row;height:500px">
+
+            <div style="font-size: 15px; text-transform: uppercase; color: #2d4256;font-family: sans-serif; text-align: center;">
+                Campus Glimpses
+            </div>
+            <div style="margin-top:10px;margin-bottom: 20px;color:#2a4356;font-size: 30px; text-transform: uppercase;
+    text-align: center;">Photo Gallery
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr));justify-content: center; gap: 10px;    margin: 3%;">
+
+                <div id="galleryParent" style=" position: relative;">
+                    <img id="galleryImage" style="width: 100%;    min-height: 150px;"
+                         src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}course_images/person1.jpg"/>
+                    <div id="hoverMore" style=" width: 100%; height: 100%;position: absolute; top: 0;  left: 0;   justify-content: center;
+                                 align-items: center;">
+                        <div id="fullView" style="margin:10px">Full View</div>
+                        <div id="More" style="margin:10px">More</div>
+                    </div>
                 </div>
             </div>
 
-            <div>
-                Quick links
 
-                <div style="margin-top:20px;    display: flex; flex-direction: column;">
-                    {% for menuItem in menuLists.menuList%}
-                    <a href="#" style="    font-size: 14px; color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px">{{menuItem.menu_title}}</a>
-                    {% endfor %}
+            <!--footer  section-->
+            <div style="background:black;padding-top: 6%;padding-bottom: 5%;;color:white;display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr));justify-content: center; gap: 100px;">
+                <div>
+                    <span style="margin-bottom: 30px;font-size: 13px;color: #e6e6e6;text-transform: uppercase; font-weight: 700;">ABOUT MATHA INSTITUTE</span>
+                    <div style="font-size: 14px;line-height: 1.8;    color: rgba(255, 255, 255, 0.6); margin-top: 40px;">
+                        Since our inception in 2016, Matha Institute, also known as TKN institution, functioned with the
+                        lofty
+                        vision of imparting progressive education suited to the changing nature of the society, that
+                        provides
+                        100 percent job-oriented courses with excellent coaching and training, with a focus on women's
+                        empowerment.
+                    </div>
                 </div>
-            </div>
 
-            <div>
-                Contact info
+                <div>
+                    Quick links
 
-                 <div style="margin-top:20px;    display: flex; flex-direction: column;">
-
-                    <div style="     font-size: 14px;color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px">Second Floor, T.K.N Sastha Hospital, Marayoor</div>
-                    <div style="    font-size: 14px; color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px"> 8281062950, 8281241950</div>
-                    <div style="    font-size: 14px; color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px">join@mathainstitutemarayoor.com</div>
-                    <div style="    font-size: 14px; color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px"> www.mathainstitutemarayoor.com</div>
-
-
-
+                    <div style="margin-top:20px; display: flex; flex-direction: column;">
+                        {% for menuItem in menuLists.menuList%}
+                        <a href="#"
+                           style="font-size: 14px; color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px">{{menuItem.menu_title}}</a>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
 
-        </div>
-        <div style="    padding: 10px;
-    text-align: center;
-    color: white;
-    background: black;    font-size: 60%;
+                <div>
+                    Contact info
+
+                    <div style="margin-top:20px;    display: flex; flex-direction: column;">
+
+                        <div style="     font-size: 14px;color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px">
+                            Second Floor, T.K.N Sastha Hospital, Marayoor
+                        </div>
+                        <div style="    font-size: 14px; color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px">
+                            8281062950, 8281241950
+                        </div>
+                        <div style="    font-size: 14px; color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px">
+                            join@mathainstitutemarayoor.com
+                        </div>
+                        <div style="    font-size: 14px; color: rgba(255, 255, 255, 0.9); text-decoration: none;;padding:10px">
+                            www.mathainstitutemarayoor.com
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div style="padding: 10px;text-align: center; color: white; background: black;font-size: 60%;
 "> © Copyright ©2022 All rights reserved | This template is made with by Catchacloud Technologies.Pvt.Ltd
+            </div>
         </div>
     </div>
-
 </div>
 
 
@@ -961,7 +1013,7 @@ function callCourseApi()
               clone=courseItem
               else
              clone = courseItem.cloneNode(true);
-console.log(clone)
+
                 clone.querySelector("#courseTitle").innerHTML = data.courseDetailsList[i].courseName
             clone.querySelector("#courseDuration").innerHTML ="Duration : "+ data.courseDetailsList[i].duration
             clone.querySelector("#courseImage").src = "{{ request.scheme }}://{{ request.get_host }}"+data.courseDetailsList[i].imageData;
@@ -971,6 +1023,55 @@ console.log(clone)
             courseItem.after(clone);
                  }
             }
+
+            callGalleryImages()
+        })
+}
+
+
+function callGalleryImages()
+{
+   fetch('{{ request.scheme }}://{{ request.get_host }}/home/getGalleryImages')
+        .then(response =>{
+            return response.json();
+        }).then(data =>{
+
+  const galleryItem=document.querySelector("#galleryImage")
+  const galleryParent=document.querySelector("#galleryParent")
+              if(data.galleryImages.length==0)
+    document.getElementById("galleryContainer").style="display:none;"
+
+        for (let i = 0; i < data.galleryImages.length; i++) {
+
+              let clone ;
+              if(i==0)
+              clone=galleryItem
+              else
+             clone = galleryItem.cloneNode(true);
+console.log(galleryParent.querySelector("#fullView"))
+
+
+     galleryParent.querySelector("#fullView").addEventListener('click', function(clone1) {
+
+                 location.href = "{{ request.scheme }}://{{ request.get_host }}"+data.galleryImages[i].imageData;
+
+            });
+
+             galleryParent.querySelector("#More").addEventListener('click', function(clone1) {
+
+                 location.href = "{{ request.scheme }}://{{ request.get_host }}"+"/home/gallery_page";
+
+            });
+
+         clone.src = "{{ request.scheme }}://{{ request.get_host }}"+data.galleryImages[i].imageData;
+                 if(i!=0)
+                 {
+            clone.id = 'elem2';
+            galleryItem.after(clone);
+                 }
+            }
+
+
         })
 }
 
@@ -1038,16 +1139,6 @@ var siderImage=document.getElementById("sliderimage")
             nav_bar.style.width = "100%"
             }
             }
-
-
-
-
-
-
-
-
-
-
 
 </script>
 {% endblock %}

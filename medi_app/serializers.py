@@ -12,3 +12,15 @@ class CourseDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseDetails
         fields = ["courseName", "imageData", "duration"]
+
+
+class GallerySectionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GallerySections
+        fields = ["galleryTitle", 'id']
+
+
+class GalleryImagesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GalleryImages
+        fields = ["imageData"]

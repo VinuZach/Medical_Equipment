@@ -1,0 +1,108 @@
+{% extends "baseHhtml.html" %}
+{% block content %}
+{% load static %}
+<style>
+       @media only screen and (max-width: 600px)
+    {
+
+   #icon
+            {
+             width:80%;
+             margin:0px;
+            }
+
+
+</style>
+<body>
+<img id="icon" src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/logo.jpg"
+     class="horizontal_spacing_40">
+<div style="
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(89px, 0fr));
+    justify-content: center;"
+>
+
+    <div onclick="callGalleryImages( '0' )"
+         style="font-size: 20px; ; text-decoration: none;    margin: 10px;    text-align: center;">
+        All
+    </div>
+        {% for sections in gallerySections %}
+        <div onclick="callGalleryImages( '{{sections.id}}' )"
+             style="font-size: 20px; ; text-decoration: none;     margin: 10px;   text-align: center;">
+            {{sections.galleryTitle}}
+        </div>
+    </div>
+</div>
+    {% endfor %}
+
+
+    <!--        gallery section-->
+    <div id="galleryContainer" style="align-items: center; justify-content: center;margin: 5% 0px;align-content: stretch;
+                      flex-direction: row;height:500px">
+
+
+        <div style=" border-top: solid;
+    padding-top: 53px;   font-weight: 600;margin-top:10px;margin-bottom: 20px;color:#2a4356;font-size: 30px; text-transform: uppercase;
+    text-align: center;">Photo Gallery
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr));justify-content: center; gap: 10px;    margin: 3%;">
+
+            <div id="galleryParent" style=" position: relative;">
+                <img id="galleryImage" style="width: 100%; min-height: 150px;"/>
+
+            </div>
+        </div>
+
+    </div>
+<script>
+callGalleryImages(0)
+
+function callGalleryImages(sectionID)
+{
+
+var url = new URL('{{ request.scheme }}://{{ request.get_host }}/home/getGalleryImages'),
+    params = {"index":sectionID}
+    url.search = new URLSearchParams(params).toString();
+   fetch(url)
+        .then(response =>{
+            return response.json();
+        }).then(data =>{
+
+  const galleryItem=document.querySelector("#galleryImage")
+  const galleryParent=document.querySelector("#galleryParent")
+  console.log(data.galleryImages.length)
+              if(data.galleryImages.length==0)
+    document.getElementById("galleryContainer").style="display:none;"
+    else
+    document.getElementById("galleryContainer").style="display:block;"
+
+        for (let i = 0; i < data.galleryImages.length; i++) {
+
+              let clone ;
+              if(i==0)
+              clone=galleryItem
+              else
+             clone = galleryItem.cloneNode(true);
+console.log(galleryParent.querySelector("#fullView"))
+
+
+
+
+         clone.src = "{{ request.scheme }}://{{ request.get_host }}"+data.galleryImages[i].imageData;
+                 if(i!=0)
+                 {
+            clone.id = 'elem2';
+            galleryItem.after(clone);
+                 }
+            }
+
+
+        })
+}
+
+
+
+
+</script>
+{% endblock %}
