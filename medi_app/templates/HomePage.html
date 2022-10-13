@@ -182,14 +182,7 @@ ul>li
       cursor: pointer;
     }
 
-.bar1, .bar2, .bar3
- {
-  width: 35px;
-  height: 5px;
-  background-color: #333;
-  margin: 6px 0;
-  transition: 0.4s;
- }
+
 
 .change .bar1
 {
@@ -222,6 +215,16 @@ padding-bottom:30px;
    @media only screen and (max-width: 1220px)
     {
 
+   #menu_parent
+            {
+             display:none;
+            }
+
+        #menu_button
+            {
+              display: block;
+              display:flex; flex-direction: column; justify-content: center;
+            }
    #icon
             {
              width:80%;
@@ -259,21 +262,21 @@ font-size: 20px;
 
 }
 
-        #menu_parent
-            {
-             display:none;
-            }
 
-        #menu_button
-            {
-              display: block;
-              display:flex; flex-direction: column; justify-content: center;
-            }
 
     }
 
    @media only screen and (max-width: 900px)
    {
+
+       #top_bar
+        {
+        display:flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        width: fit-content;
+        padding-top:10px;
+        }
 
           #newsItemsParent{
 flex-direction: column;
@@ -294,7 +297,13 @@ display:none;
    }
    @media only screen and (max-width: 600px)
    {
+   #menu_button
+            {
+              display: block;
+              display:flex; flex-direction: row;     justify-content: space-between;
+              width:100%;
 
+            }
 #vertical_statement_hex
 {
 display:block;
@@ -330,30 +339,10 @@ display:block;
     {
      margin: 0px 10px 0px 10px;
     }
-    .bar1, .bar2, .bar3
-     {
-      width: 30px;
-      height: 2px;
-      background-color: #333;
-      margin: 6px 0;
-      transition: 0.4s;
-     }
-      #top_bar
-        {
-        display:flex;
-        flex-direction: column-reverse;
-        align-items: center;
-        width: fit-content;
-        padding-top:10px;
-        }
 
-            #menu_button
-            {
-              display: block;
-              display:flex; flex-direction: row;     justify-content: space-between;
-              width:100%;
 
-            }
+
+
    }
 
 
@@ -447,31 +436,6 @@ position: absolute;
     padding: 20px 60px;
         text-transform: uppercase;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </style>
 
@@ -574,11 +538,11 @@ position: absolute;
     <div style="display:flex;flex-direction: column; justify-content: center;margin: 20px;">
         <div id="floating_container">
             <!--                    1nd button-->
-            <div style="display:flex;flex-direction: column; justify-content: center;margin: 20px;">
-                <div style="background: #FFC300;display:flex;
+            <div  style="display:flex;flex-direction: column; justify-content: center;margin: 20px;">
+                <div onclick="registrationPage()" style="    cursor: pointer;background: #FFC300;display:flex;
                 padding: 20px 60px;
                     margin-top: -10%;
-                    flex-direction: column;">
+                    flex-direction: column;" >
                 <span style="color: white;font-size: 30px;width: max-content;font-weight: 200; text-transform: uppercase;
                          margin: 10px;">   For Admission</span>
                     <span style="text-transform: uppercase; letter-spacing: 3px;width: fit-content;font-size: 12px;
@@ -853,10 +817,10 @@ position: absolute;
             <div style="margin-top:10px;margin-bottom: 20px;color:#2a4356;font-size: 30px; text-transform: uppercase;
     text-align: center;">Photo Gallery
             </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr));justify-content: center; gap: 10px;    margin: 3%;">
+            <div id="galleryParent" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr));justify-content: center; gap: 10px;    margin: 3%;">
 
-                <div id="galleryParent" style=" position: relative;">
-                    <img id="galleryImage" style="width: 100%;    min-height: 150px;"
+                <div id="galleryItem" style=" position: relative;">
+                    <img id="galleryImage" style="width: 100%;    height: 300px;"
                          src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}course_images/person1.jpg"/>
                     <div id="hoverMore" style=" width: 100%; height: 100%;position: absolute; top: 0;  left: 0;   justify-content: center;
                                  align-items: center;">
@@ -915,8 +879,8 @@ position: absolute;
                 </div>
 
             </div>
-            <div style="padding: 10px;text-align: center; color: white; background: black;font-size: 60%;
-"> © Copyright ©2022 All rights reserved | This template is made with by Catchacloud Technologies.Pvt.Ltd
+            <div style="padding: 10px;text-align: center; color: white; background: black;font-size: 60%;">
+                © Copyright ©2022 All rights reserved | This template is made with by Catchacloud Technologies.Pvt.Ltd
             </div>
         </div>
     </div>
@@ -927,6 +891,7 @@ position: absolute;
 
   const newsItemParent=document.getElementById("newsItemsParent")
 
+document.getElementById("Appicon").style.display = "none";
 
 let mouseDown = false;
 let startX, scrollLeft;
@@ -1031,12 +996,15 @@ function callCourseApi()
 
 function callGalleryImages()
 {
-   fetch('{{ request.scheme }}://{{ request.get_host }}/home/getGalleryImages')
+var url = new URL('{{ request.scheme }}://{{ request.get_host }}/home/getGalleryImages'),
+    params = {"index":0}
+    url.search = new URLSearchParams(params).toString();
+   fetch(url)
         .then(response =>{
             return response.json();
         }).then(data =>{
 
-  const galleryItem=document.querySelector("#galleryImage")
+  const galleryItem=document.querySelector("#galleryItem")
   const galleryParent=document.querySelector("#galleryParent")
               if(data.galleryImages.length==0)
     document.getElementById("galleryContainer").style="display:none;"
@@ -1063,7 +1031,7 @@ console.log(galleryParent.querySelector("#fullView"))
 
             });
 
-         clone.src = "{{ request.scheme }}://{{ request.get_host }}"+data.galleryImages[i].imageData;
+         clone.querySelector("#galleryImage").src = "{{ request.scheme }}://{{ request.get_host }}"+data.galleryImages[i].imageData;
                  if(i!=0)
                  {
             clone.id = 'elem2';
@@ -1139,6 +1107,10 @@ var siderImage=document.getElementById("sliderimage")
             nav_bar.style.width = "100%"
             }
             }
-
+function registrationPage()
+{
+    console.log("cclasd")
+    location.href = "{{ request.scheme }}://{{ request.get_host }}"+"/home/student_registration";
+}
 </script>
 {% endblock %}

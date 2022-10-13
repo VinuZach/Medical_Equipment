@@ -2,15 +2,26 @@
 {% block content %}
 {% load static %}
 
+<div>Upload Gallery Image</div>
 
-   <form method="POST" enctype="multipart/form-data" style="border-bottom: 1px groove #0a0a0a;
+
+<form method="POST" enctype="multipart/form-data" style="border-bottom: 1px groove #0a0a0a;
                                                                     padding-bottom: 7px;
                                                                     text-align: center;
                                                                     padding: 10px;">
-                            <input id="text" type="text" placeholder="Enter headline " autocomplete="off"
-                                   required="True"
-                                   name="headerData"
-                                   style="padding-bottom: 10px;
+
+    <select name="sectionId" required >
+        <option>New</option>
+        {% for section in gallerySections%}
+        <option  value="{{section.id}}">{{section.galleryTitle}}</option>
+        {% endfor %}
+    </select>
+
+
+    <input id="text" type="text" placeholder="Enter headline " autocomplete="off"
+           required="True"
+           name="headerData"
+           style="padding-bottom: 10px;
                                                                                     padding-top: 10px;
                                                                                     padding-left: 40px;
                                                                                     padding-right: 40px;
@@ -18,15 +29,15 @@
                                                                                     position: relative;
                                                                                     width: 70%;
                                                                                 }"/>
-                            <br>
-                            {% csrf_token %}
+    <br>
+    {% csrf_token %}
 
-                            <label id="getFileLabel" for="getFile">Open File</label>
-                            <input id="getFile" type="file" name="document" required="True"/>
-
-
-                            <button type="submit">Upload</button>
+    <label id="getFileLabel" for="getFile">Open File</label>
+    <input id="getFile" type="file" name="document" required="True"/>
 
 
-                        </form>
+    <button type="submit">Upload</button>
+
+
+</form>
 {% endblock %}

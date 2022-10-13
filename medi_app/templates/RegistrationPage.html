@@ -1,0 +1,529 @@
+{% extends "baseHhtml.html" %}
+{% block content %}
+{% load static %}
+
+
+<style>
+
+
+ul>li
+{
+  list-style-type: none;
+}
+
+   li>a
+    {
+     font-size: 12px;
+     font-weight: 700;
+     color: var(--unselected_text_color);
+
+    }
+#menu_parent
+    {
+        display:flex
+   }
+
+     @media only screen and (max-width: 1180px)
+    {
+    }
+   @media only screen and (max-width: 1220px)
+    {
+  #menu_parent
+            {
+             display:none;
+            }
+   #icon
+            {
+             width:80%;
+             margin:0px;
+            }
+     }
+       @media only screen and (max-width: 900px)
+   {
+
+       #top_bar
+        {
+        display:flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        width: fit-content;
+        padding-top:10px;
+        }
+    }
+     .menuItemHover:hover
+    {
+      color: var(--selected_text_color);
+    }
+
+        .parentDropDown:hover .dropdown
+    {
+       display:block;
+    }
+    .parentDropDown
+    {
+      padding-bottom:20px;
+      padding-left:10px;
+    }
+
+       .dropdown .submenu
+    {
+    color:#c9c9c9;
+    font-size: 15px;
+      text-decoration: none;
+
+    }
+  .parentDropDown .dropdown
+    {
+       display:none;
+       position: absolute;
+       background:black;
+       box-shadow: 0px 14px 33px -9px rgb(0 0 0 / 75%);
+       border-radius: 5px;
+       border: 1px solid #301B46;
+       margin-top:20px;
+         z-index: 1;
+       padding:10px;
+       min-width: 160px;
+
+    }
+    .dropdown .submenu:hover
+    {
+    color:white;
+    font-size: 15px;
+    text-decoration: none;
+  min-width: 80px;
+    }
+
+.container {
+  position: relative;
+  width: 100%;
+
+}
+
+.dropdown:before {
+  content: "";
+  position: absolute;
+  border-color: rgba(194, 225, 245, 0);
+  border: solid transparent;
+  border-bottom-color: black;
+  border-width: 11px;
+  margin-left: -99px;
+  top: -21px;
+  right: 145px;
+  z-index: 1;
+}
+
+.dropdown:after {
+    content: "";
+    position: absolute;
+    right: 145px;
+    top: -21px;
+    width: 0;
+    height: 0;
+    border: solid transparent;
+    border-width: 10px;
+    border-bottom-color: #2B1A41;
+    z-index: 0;
+}
+#top_bar
+{
+display:flex;
+flex-direction: row;
+align-items: center;
+width: fit-content;
+padding-top:30px;
+padding-bottom:30px;
+}
+
+
+input[type=text]:focus {
+  border: 3px solid #555;
+  outline: none
+}
+.inputData
+{
+    height: 50px;
+        box-shadow: none;
+    border: 1px solid #f0f0f0;
+    font-size: 16px !important;
+    font-weight: 300;
+width: 90%;
+
+    background: #f2f3f7;
+color: #555555;
+    padding: 10px 20px;
+}
+.fillWidth
+{
+width:100%
+}
+.labelClass
+{
+padding:10px;
+    font-weight: 400;
+        color: gray;
+        line-height: 1.5;
+}
+
+
+
+
+
+fieldset {
+      overflow: hidden;
+      border:none;
+    }
+
+    .some-class {
+      float: left;
+      clear: none;
+    }
+
+    label {
+      float: left;
+      clear: none;
+      display: block;
+      padding: 0px 1em 0px 8px;
+    }
+
+    input[type=radio],
+    input.radio {
+      float: left;
+      clear: none;
+      margin: 2px 0 0 2px;
+    }
+
+
+
+
+
+
+
+
+
+
+#gridContainerView
+{
+                display: grid;
+                justify-items: stretch;
+                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    margin: 1%;
+                    }
+
+  @media only screen and (max-width: 1250px)
+    {
+
+    #gridContainerView
+            {
+                display: flex;
+              flex-direction: column;
+                    margin: 1%;
+                    }
+    }
+
+
+</style>
+<div>
+    <div style="display:flex;justify-content: center;">
+        <div id="top_bar">
+            <img id="icon" src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/logo.jpg"
+                 class="horizontal_spacing_40">
+
+            <ul id="menu_parent">
+                {% for menuItem in menuLists.menuList%}
+                <li class="parentDropDown"><a href="#"
+                                              class="horizontal_spacing_10 text_allCaps menuItemHover">{{menuItem.menu_title}}</a>
+
+                    {% if menuItem.menu_subMenu|length > 0 %}
+
+                    <ul class="dropdown">
+                        {% for subMenu in menuItem.menu_subMenu %}
+
+                        <li style="padding-top: 5px;padding-bottom: 5px; padding-right:10px;"><a
+                                class="submenu"
+                                href="#">{{subMenu}}
+                        </a></li>
+                        {% endfor %}
+                    </ul>
+
+                    {% endif %}
+                </li>
+
+
+                {% endfor %}
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <div style="margin: 21px 10px;">
+        <div style="display:flex;justify-content: center;align-items: center;">
+
+
+            <form method="POST" enctype="multipart/form-data"
+                  style="padding-bottom: 7px;text-align: center;padding: 10px;    width: 80%;">
+                {% csrf_token %}
+
+                <div id="gridContainerView">
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px">
+                        <label class="labelClass">Joining Date</label>
+                        <input type="Date" name="joing_date" class="inputData" required>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px">
+                        <label class="labelClass">Joining Time</label>
+                        <input type="time" name="joing_time" class="inputData" required>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 1">
+                        <label class="labelClass">Student Name</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="stud_name"
+                               class="inputData" required autocomplete="off">
+                    </div>
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 0">
+                        <label class="labelClass">Date of Birth</label>
+                        <input type="Date" name="stu_date" class="inputData" required>
+                    </div>
+                    <!--mother name and occupation-->
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 1">
+                        <label class="labelClass">Mother Name</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="mother_name"
+                               class="inputData" required autocomplete="off">
+                    </div>
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 0">
+                        <label class="labelClass">Occupation</label>
+                        <input pattern="\S(.*\S)?" title="This field is required" type="text" name="ma_occupation"
+                               class="inputData" required autocomplete="off">
+                    </div>
+
+                    <!--                        fathers name and occupation                -->
+
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 1">
+                        <label class="labelClass">Father Name</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="father_name"
+                               class="inputData" required autocomplete="off">
+                    </div>
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 0">
+                        <label class="labelClass">Occupation</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="fa_occupation"
+                               class="inputData" required="" autocomplete="off">
+                    </div>
+
+
+                    <!--                    gender and category-->
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 1">
+                        <label class="labelClass">Gender</label>
+
+                        <fieldset>
+                            <div class="some-class">
+                                <input type="radio" class="radio" name="gender" value="Male" id="y" required/>
+                                <label for="y">M</label>
+                                <br>
+                                <br>
+                                <input type="radio" class="radio" name="gender" value="Female" id="z" required/>
+                                <label for="z">F</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 0">
+                        <select style=" width:100%; margin-top:20px" class="inputData" required required>
+                            <option value="" name="category" selected="" disabled>Choose Category</option>
+
+                            <option>DC</option>
+                            <option>ST</option>
+                            <option>OBC</option>
+                            <option>General</option>
+                        </select>
+                    </div>
+                    <!-- address-->
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px ;grid-column: 1 / 3;">
+                        <label class="labelClass">Present Address</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="P_address"
+                               class="inputData fillWidth" required autocomplete="off">
+                    </div>
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px ;grid-column: 1 / 3;">
+                        <label class="labelClass">Permanent Address</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="Per_address"
+                               class="inputData fillWidth" required autocomplete="off">
+                    </div>
+
+                    <!--                    caste and Religion-->
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 1">
+                        <label class="labelClass">Caste</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="caste"
+                               class="inputData" required autocomplete="off">
+                    </div>
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 0">
+                        <label class="labelClass">Religion</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="religion"
+                               class="inputData" required="" autocomplete="off">
+                    </div>
+
+                    <!--                    mother tounge and phone-->
+
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 1">
+                        <label class="labelClass">Mother Tongue</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="m_tongue"
+                               class="inputData" autocomplete="off">
+                    </div>
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 0">
+                        <label class="labelClass">Phone</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="phone"
+                               class="inputData" required="" autocomplete="off">
+                    </div>
+
+                    <!--                    mobile-->
+
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 2">
+                        <label class="labelClass">Mobile Number</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="m_phone"
+                               class="inputData" required="" autocomplete="off">
+                    </div>
+
+                    <!--                    email and blood group-->
+
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 1">
+                        <label class="labelClass">Email ID</label>
+                        <input type="email" name="email" class="inputData" autocomplete="off">
+                    </div>
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 0">
+                        <label class="labelClass">Blood Group</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="b_group"
+                               class="inputData" required="" autocomplete="off">
+                    </div>
+
+                    <!--                    last school and qualification-->
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 1">
+                        <label class="labelClass">Name of last attended school</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="last_school"
+                               class="inputData" autocomplete="off">
+                    </div>
+
+                    <div style="display: flex; align-content: center; align-items: center;margin-top: 16px;">
+                        <select name="category_qual" style=" width:100%; margin-top:20px" class="inputData" required>
+                            <option value="" disabled selected>Choose Category</option>
+                            <option>10th</option>
+                            <option>12th</option>
+                            <option>Diploma</option>
+                            <option>Graduation</option>
+                        </select>
+                    </div>
+
+                    <!--                    year of pass out-->
+
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 2">
+                        <label class="labelClass">Year of Passing</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="pass_year"
+                               class="inputData" required="" autocomplete="false">
+                    </div>
+
+                    <!--                course selectiona and fees -->
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 1">
+                        <label class="labelClass">Course you are choosing</label>
+                        <select name="selected_course" style=" width:100%; margin-top:20px" class="inputData" required>
+                            <option value="" disabled selected>Choose Category</option>
+
+                            <option>Diploma in nursing</option>
+                            <option>Diploma in laboratory technician</option>
+                            <option>Diploma in pharmacy assistant</option>
+                            <option>Ayurveda &amp; panchakarma</option>
+                        </select>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 0">
+                        <label class="labelClass">Fee Scheduled</label>
+                        <select name="fee_struct" style="width:100%; margin-top:20px" class="inputData" required>
+                            <option value="" selected="" disabled>Choose Fee Scheduled</option>
+
+                            <option>Monthly</option>
+                            <option>Quarterly</option>
+                            <option>Another</option>
+                        </select>
+                    </div>
+
+                    <!--                    should be paid exam-->
+
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 1">
+                        <label class="labelClass">Should be paid exam, uniform and study material</label>
+                        <input type="text" pattern="\S(.*\S)?" title="This field is required" name="extra_pay"
+                               class="inputData" required="" autocomplete="false">
+                    </div>
+
+                    <div style="display: flex; flex-direction: column;align-items: flex-start;margin:10px;grid-column: 1 / 0">
+                        <label class="labelClass">Enclosure 1</label>
+                        <select name="pay_class" style=" width:100%; margin-top:20px" class="inputData" required>
+                            <option value="" disabled selected>Choose Category</option>
+                            <option>10th</option>
+                            <option>12th</option>
+                            <option>Diploma</option>
+                            <option>Graduation</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <input id="getFile" type="file" name="document" required/>
+                <br><br><br><br><br><br><br><br>
+                <button style="    background: var(--selected_text_color);
+    padding: 2% 10%;
+    color: white;
+    font-size: 20px;" type="submit">Upload
+                </button>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.getElementById("Appicon").style.display = "none";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+{% endblock %}

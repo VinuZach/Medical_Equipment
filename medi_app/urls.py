@@ -4,8 +4,15 @@ from .ApiCalls import *
 
 urlpatterns = [
     path("", displayHome),
+
+    path("gallery_page", displayGalleryPage),
+    path("student_registration", displayStudentRegistration)
+]
+# admin pages
+urlpatterns += [
     path("health_admin", uploadNews_admin),
-    path("gallery_page", displayGalleryPage)
+    path("health_admin_gallery", uploadGallery_admin),
+    path("health_admin_studentDetails/<int:offset>", displayStudents),
 ]
 
 # api links

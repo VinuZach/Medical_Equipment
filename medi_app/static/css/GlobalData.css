@@ -18,6 +18,22 @@ body
 
 }
 
+.bar1, .bar2, .bar3
+ {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+ }
+   .bar1, .bar2, .bar3
+     {
+      width: 30px;
+      height: 2px;
+      background-color: #333;
+      margin: 6px 0;
+      transition: 0.4s;
+     }
 .horizontal_spacing_10
 {
     margin: 0px 10px 0px 10px;
@@ -35,6 +51,6 @@ body
 .text_allCaps
 {
 text-transform: uppercase;
-  text-decoration: none;
+ text-decoration: none;
 
 }

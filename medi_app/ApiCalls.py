@@ -30,5 +30,5 @@ def getGalleryImages(request):
         print("inside 0")
         galleryImages = GalleryImages.objects.all()
     else:
-        galleryImages = GalleryImages.objects.filter(id=index)
+        galleryImages = GalleryImages.objects.filter(gallery_section=index)
     return JsonResponse({"galleryImages": GalleryImagesSerializer(galleryImages, many=True).data}, safe=False)

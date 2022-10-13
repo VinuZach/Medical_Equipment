@@ -7,11 +7,33 @@
     <title>Title</title>
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+       @media only screen and (max-width: 600px)
+    {
+
+   #Appicon
+            {
+             width:80%;
+             margin:0px;
+
+
+            }
+    }
+
+</style>
 <body>
+    <div>
+        <img id="Appicon" src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/logo.jpg"
+             class="horizontal_spacing_40" style="margin:10px;">
+    </div>
 
 {% block content %}
 
 
 {% endblock %}
+
+
+
 </body>
 </html>
