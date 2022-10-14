@@ -1,0 +1,736 @@
+{% extends "baseHhtml.html" %}
+{% block content %}
+{% load static %}
+
+<style>
+
+
+    @page {
+  size: auto;
+  margin: 0mm;
+}
+
+
+.header
+{
+    font-weight: 600;
+    text-decoration-line: underline;
+
+        grid-column: 1 / 3;
+       margin:50px 0px;
+}
+  .centerlabel
+                       {
+                           justify-content: center;}
+.dummyText
+{
+color:white;
+}
+#fees_structure_print
+{
+display:none;
+}
+#fees_structure_web
+{
+display: flex;flex-direction: row;
+}
+
+#tobe_Qual_web
+{
+display: flex;flex-direction: row;
+}
+
+#tobe_Qual_print
+{
+display: none;
+}
+
+#selectedCourse_web
+{
+display:grid;
+}
+#selectedCourse_print
+{
+display:none;
+}
+.printSpace
+{
+display:none;
+}
+
+   .courseItemRejected
+   {
+       text-decoration: line-through;
+   }
+
+    .courseItem
+                  {
+                  color: var(--selected_text_color);
+                  margin:0px 20px;
+                      text-transform: capitalize;
+                  }
+#last_qual_web
+                {
+                display:flex;
+                }
+
+                #last_qual_print
+                {
+                display:none;
+                }
+.redBorder{
+                        border: 1px solid red;padding:10px;margin:0px 5px
+                        }
+.label
+{
+color: var(--selected_text_color);
+  height: fit-content;
+}
+    .fullWidth
+            {
+                grid-column: 1 / 3;
+                margin-top:14px;
+            }
+.dataValue
+{
+color: black;
+    margin-left: 10px;
+flex-grow: 1;
+       padding-left:10px;
+    border-bottom: 1px dotted blue;
+    height: fit-content;
+}
+
+.itemContainer
+{
+display:flex;margin: 1px 0px;
+}
+
+.itemContainer_spaceAbove
+{
+display:flex;
+margin-top: 80px;
+}
+
+.subItemContainer
+{
+display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr)); gap: 1px;    margin: 3%;
+}
+    .dataContainer
+    {
+        display: grid;    height: fit-content; grid-template-columns: auto auto;
+        gap: 5%;
+        margin: 30px;
+        width: 100%;
+    }
+
+
+ .whiteDataValue
+        {
+        color: white;
+        margin-left: 10px;
+        flex-grow: 1;
+        padding-left:10px;
+            align-self: self-end;
+        border-bottom: 1px dotted blue;
+        height: fit-content;
+        }
+    .dataValue
+        {
+        color: black;
+        margin-left: 10px;
+        flex-grow: 1;
+        padding-left:10px;
+        border-bottom: 1px dotted blue;
+        height: fit-content;
+        }
+
+
+
+    #genderWeb
+            {
+            display:flex;
+            }
+            #genderPrint
+            {
+            display:none;
+            }
+
+             .greyBackground
+    {
+    background: grey;
+    }
+  @media print {
+
+.itemContainer_spaceAbove
+{
+display:flex;margin: 80px 0px;
+}
+
+       .whiteDataValue
+        {
+        color: white;
+        margin-left: 10px;
+            align-self: self-end;
+        flex-grow: 1;
+        padding-left:10px;
+        border-bottom: 1px dotted blue;
+        height: fit-content;
+        }
+
+
+#fees_structure_print
+{
+display:block;
+}
+#fees_structure_web
+{
+display: none;
+}
+
+#tobe_Qual_web
+{
+display: none;
+}
+
+#tobe_Qual_print
+{
+
+display: block;
+}
+
+
+
+.printSpace
+{
+display:block;
+}
+    #last_qual_print
+                {
+                display:block;
+                }
+  #last_qual_web
+                {
+                display:none;
+                }
+            #genderWeb
+            {
+            display:none;
+            }
+            #genderPrint
+            {
+            display:block;
+            }
+#selectedCourse_web
+{
+display:none;
+}
+#selectedCourse_print
+{
+display:block;
+}
+            .label
+            {
+                color: var(--selected_text_color);
+                height: fit-content;
+            }
+
+            .dataContainer
+            {
+                display: grid;    height: fit-content; grid-template-columns: auto auto;
+                gap: 2%;
+                margin: 10px;
+                width: 100%;
+            }
+
+     .dataContainer
+    {
+        display: grid;    height: fit-content; grid-template-columns: auto auto;
+        gap: 5%;
+        margin: 10px;
+        width: 100%;
+             font-size:12px;
+    }
+
+    .dataValue
+        {
+        color: black;
+        margin-left: 10px;
+        flex-grow: 1;
+           padding-left:10px;
+        border-bottom: 1px dotted blue;
+        height: fit-content;
+        font-size:12px;
+        }
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+{% if user.is_authenticated  %}
+<div style="border-top: 2px solid blue;margin: 0px 10px;padding: 10px;    display: flex;
+    flex-direction: column;">
+    <center style="color: var(--selected_text_color); font-size: 30px;    text-decoration: underline;">ADMISSION FORM
+    </center>
+
+    <div style="    display: flex;    margin-top: 40px;
+    justify-content: space-between;flex-direction: row;">
+
+
+        <div class="dataContainer">
+            <div class="itemContainer">
+                <div class="label">1. Joining Date :</div>
+                <div class="dataValue">{{studentDetails.joining_date}}</div>
+            </div>
+            <div class="itemContainer">
+                <div class="label">2. Joining Time :</div>
+                <div class="dataValue">{{studentDetails.joining_time}}</div>
+            </div>
+
+            <div class="itemContainer">
+                <div class="label">3. Students Name :</div>
+                <div class="dataValue">{{studentDetails.student_name}}</div>
+            </div>
+
+            <div class="itemContainer">
+                <div class="label">4. Date of Birth :</div>
+                <div class="dataValue">{{studentDetails.student_DOB}}</div>
+            </div>
+
+            <div class="itemContainer">
+                <div class="label">5. Father Name :</div>
+                <div class="dataValue">{{studentDetails.student_father_name}}</div>
+            </div>
+
+            <div class="itemContainer">
+                <div class="label">6. Occupation :</div>
+                <div class="dataValue">{{studentDetails.student_father_occup}}</div>
+            </div>
+
+            <div class="itemContainer">
+                <div class="label">7. Mother Name :</div>
+                <div class="dataValue">{{studentDetails.student_mother_name}}</div>
+            </div>
+
+            <div class="itemContainer">
+                <div class="label">8. Occupation :</div>
+                <div class="dataValue">{{studentDetails.student_mother_occup}}</div>
+            </div>
+
+            <div class="itemContainer">
+                <div class="label">9. Gender :</div>
+                <div id="genderPrint" class="dataValue">{{studentDetails.student_gender}}</div>
+                <div id="genderWeb">
+                    <div style="display:flex;margin:0px 10px">
+                        <div>M</div>
+                        {% if studentDetails.student_gender in "Male" %}
+                        <div style="border: 1px solid red;padding:10px;margin:0px 5px; background:red;"></div>
+                        {% else %}
+                        <div class="redBorder">222</div>
+                        {% endif %}
+                    </div>
+                    <div style="display:flex;margin:0px 10px">
+                        <div>F</div>
+
+                        {% if studentDetails.student_gender in "Male" %}
+                        <div class="redBorder"></div>
+                        {% else %}
+                        <div style="border: 1px solid red;padding:10px;margin:0px 5px; background:red;"></div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="itemContainer">
+                <div class="label">10. Category : -</div>
+                <span class="label">DC</span>,<span class="label">ST</span>,<span class="label">OBC</span> ,<span
+                    class="label">GENERAL</span>
+                <div class="dataValue">{{studentDetails.student_caste_category}}</div>
+            </div>
+
+            <div class="itemContainer fullWidth">
+                <div class="label">11. Permanent Address :</div>
+
+
+                <div class="dataValue">{{studentDetails.permanentAddress}}</div>
+
+            </div>
+            <div class="dataValue fullWidth"></div>
+
+            <div class="itemContainer fullWidth">
+                <div class="label">12. Present Address :</div>
+                <div class="dataValue">{{studentDetails.presentAddress}}</div>
+            </div>
+            <div class="dataValue fullWidth"></div>
+
+            <div class="itemContainer ">
+                <div class="label">13. Caste :</div>
+                <div class="dataValue">{{studentDetails.caste}}</div>
+            </div>
+            <div class="itemContainer ">
+                <div class="label">14. Religion :</div>
+                <div class="dataValue">{{studentDetails.religion}}</div>
+            </div>
+
+            <div class="itemContainer fullWidth">
+                <div class="label">15. Mother Tongue :</div>
+                <div class="dataValue">{{studentDetails.mother_tongue}}</div>
+            </div>
+
+            <div class="itemContainer">
+                <div class="label">16. Phone :</div>
+                <div class="dataValue">{{studentDetails.phone}}</div>
+            </div>
+
+            <div class="itemContainer">
+                <div class="label">17.Mobile Number :</div>
+                <div class="dataValue">{{studentDetails.mobileNumber}}</div>
+            </div>
+
+            <div class="itemContainer">
+                <div class="label">18. Email :</div>
+                <div class="dataValue">{{studentDetails.emailId}}</div>
+            </div>
+
+            <div class="itemContainer">
+                <div class="label">19.Blood Group :</div>
+                <div class="dataValue">{{studentDetails.blood_group}}</div>
+            </div>
+  <div class="printSpace"></div>
+            <div class="itemContainer fullWidth">
+                <div class="label">20.Name of Last School Attended :</div>
+                <div class="dataValue">{{studentDetails.last_attended_school}}</div>
+            </div>
+
+
+            <div class="itemContainer fullWidth">
+                <div class="label">21.Education Qualification :</div>
+                <div id="last_qual_print">{{studentDetails.last_attended_school_qual}}</div>
+                <div id="last_qual_web">
+                    {% if studentDetails.last_attended_school_qual in "10th" %}
+                    <div class="redBorder">10th</div>
+                    {% else %}
+                    <div class="redBorder greyBackground">10th</div>
+                    {% endif %}
+
+                    {% if studentDetails.last_attended_school_qual in "12th" %}
+                    <div class="redBorder ">12th</div>
+                    {% else %}
+                    <div class="redBorder greyBackground">12th</div>
+                    {% endif %}
+
+                    {% if studentDetails.last_attended_school_qual in "Diploma" %}
+                    <div class="redBorder ">Diploma</div>
+                    {% else %}
+                    <div class="redBorder greyBackground">Diploma</div>
+                    {% endif %}
+
+                    {% if studentDetails.last_attended_school_qual in "Graduation" %}
+                    <div class="redBorder ">Graduation</div>
+                    {% else %}
+                    <div class="redBorder greyBackground">Graduation</div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+            <div class="itemContainer fullWidth">
+                <div class="label">22.Year of Passing :</div>
+                <div class="dataValue">{{studentDetails.year_of_passing}}</div>
+            </div>
+
+            <div class="itemContainer fullWidth">
+                <div class="label">23. Course you are choosing :</div>
+                <div id="selectedCourse_print" class="dataValue">{{studentDetails.selectedCourse}}</div>
+            </div>
+
+            <div id="selectedCourse_web" class="subItemContainer fullWidth">
+                {% if studentDetails.selectedCourse in 'Diploma in nursing' %}
+                <div class="courseItem ">1. Diploma in Nursing</div>
+                {% else %}
+                <div class="courseItem courseItemRejected">1. Diploma Nursing</div>
+                {% endif%}
+
+                {% if studentDetails.selectedCourse in 'Diploma in Laboratory Technician' %}
+                <div class="courseItem ">1. Diploma in Laboratory Technician</div>
+                {% else %}
+                <div class="courseItem courseItemRejected">2 .Diploma in Laboratory Technician</div>
+                {% endif%}
+
+                {% if studentDetails.selectedCourse in 'Diploma in Pharmacy Assistance' %}
+                <div class="courseItem">3 .Diploma in Pharmacy Assistance</div>
+                {% else %}
+                <div class="courseItem courseItemRejected">2 .Diploma in Pharmacy Assistance</div>
+                {% endif%}
+
+                {% if studentDetails.selectedCourse in 'Ayurveda & Panchakarma' %}
+                <div class="courseItem">4 .Ayurveda & Panchakarma</div>
+                {% else %}
+                <div class="courseItem courseItemRejected">2 .Ayurveda & Panchakarma</div>
+                {% endif%}
+                {% if studentDetails.selectedCourse in 'Hotel management' %}
+                <div class="courseItem">5 .Hotel management</div>
+                {% else %}
+                <div class="courseItem courseItemRejected">2 .Hotel management</div>
+                {% endif%}
+
+
+                {% if studentDetails.selectedCourse in 'Montessori (Teacher Training)' %}
+                <div class="courseItem">6 .Montessori (Teacher Training)</div>
+                {% else %}
+                <div class="courseItem courseItemRejected">6 .Montessori (Teacher Training)</div>
+                {% endif%}
+
+                {% if studentDetails.selectedCourse in 'Home Nursing' %}
+                <div class="courseItem">7.Home Nursing</div>
+                {% else %}
+                <div class="courseItem courseItemRejected">7.Home Nursing</div>
+                {% endif%}
+
+                {% if studentDetails.selectedCourse in 'Home Nursing' %}
+                <div class="courseItem">8.Data Entry</div>
+                {% else %}
+                <div class="courseItem courseItemRejected">8.Data Entry</div>
+                {% endif%}
+                {% if studentDetails.selectedCourse in 'Home Nursing' %}
+                <div class="courseItem">9.Diploma in X-Ray Technology</div>
+                {% else %}
+                <div class="courseItem courseItemRejected">9.Diploma in X-Ray Technology</div>
+                {% endif%}
+
+                {% if studentDetails.selectedCourse in 'Home Nursing' %}
+                <div class="courseItem">10. ECG Technology</div>
+                {% else %}
+                <div class="courseItem courseItemRejected">10. ECG Technology</div>
+                {% endif%}
+
+                {% if studentDetails.selectedCourse in 'Home Nursing' %}
+                <div class="courseItem">11. Nursery Teacher Training</div>
+                {% else %}
+                <div class="courseItem courseItemRejected">11. Nursery Teacher Training</div>
+                {% endif%}
+
+                {% if studentDetails.selectedCourse in 'Home Nursing' %}
+                <div class="courseItem">12. House Keeping</div>
+                {% else %}
+                <div class="courseItem courseItemRejected">>12. House Keeping</div>
+                {% endif%}
+                {% if studentDetails.selectedCourse in 'Home Nursing' %}
+                <div class="courseItem">13. Yoga and Meditation</div>
+                {% else %}
+                <div class="courseItem courseItemRejected">13. Yoga and Meditation</div>
+                {% endif%}
+
+
+            </div>
+
+            <div class="itemContainer fullWidth">
+                <div class="label">24. Fees Schedule :</div>
+                <div id="fees_structure_print"> {{studentDetails.fee_schedule}}</div>
+                <div id="fees_structure_web">
+                    <div style="display:flex;margin:0px 10px">
+
+                        <div>Monthly</div>
+
+                        {% if studentDetails.fee_schedule in "Monthly" %}
+                        <div style="border: 1px solid red;padding:10px;margin:0px 5px; background:red;"></div>
+                        {% else %}
+                        <div class="redBorder"></div>
+                        {% endif %}
+
+                    </div>
+
+                    <div style="display:flex;margin:0px 10px">
+
+                        <div>Quarterly</div>
+
+                        {% if studentDetails.fee_schedule in "Quarterly" %}
+                        <div style="border: 1px solid red;padding:10px;margin:0px 5px; background:red;"></div>
+                        {% else %}
+                        <div class="redBorder"></div>
+                        {% endif %}
+
+                    </div>
+                    <div style="display:flex;margin:0px 10px">
+
+                        <div>Quarterly</div>
+
+                        {% if studentDetails.fee_schedule in "Quarterly" %}
+                        <div style="border: 1px solid red;padding:10px;margin:0px 5px; background:red;"></div>
+                        {% else %}
+                        <div class="redBorder"></div>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="itemContainer fullWidth">
+                <div class="label">25.Should be paid Exam,Uniform and Study Material :</div>
+                <div class="dataValue">{{studentDetails.tobe_payed}}</div>
+            </div>
+
+            <div class="itemContainer fullWidth">
+                <div class="label">26.Enclosure :1 Mark sheet original</div>
+                <div id="tobe_Qual_print" class="dataValue">{{studentDetails.tobe_Qual}}</div>
+            </div>
+            <div class="itemContainer fullWidth">
+                <div id="tobe_Qual_web">
+                    <div style="display:flex;margin:0px 10px">
+
+                        <div>10th</div>
+
+                        {% if studentDetails.tobe_Qual in "10th" %}
+                        <div style="border: 1px solid red;padding:10px;margin:0px 5px; background:red;"></div>
+                        {% else %}
+                        <div class="redBorder"></div>
+                        {% endif %}
+
+                    </div>
+
+                    <div style="display:flex;margin:0px 10px">
+
+                        <div>12th</div>
+
+                        {% if studentDetails.tobe_Qual in "12th" %}
+                        <div style="border: 1px solid red;padding:10px;margin:0px 5px; background:red;"></div>
+                        {% else %}
+                        <div class="redBorder"></div>
+                        {% endif %}
+
+                    </div>
+                    <div style="display:flex;margin:0px 10px">
+
+                        <div>Diploma</div>
+
+                        {% if studentDetails.tobe_Qual in "Diploma" %}
+                        <div style="border: 1px solid red;padding:10px;margin:0px 5px; background:red;"></div>
+                        {% else %}
+                        <div class="redBorder"></div>
+                        {% endif %}
+
+                    </div>
+                    <div style="display:flex;margin:0px 10px">
+
+                        <div>Graduation</div>
+
+                        {% if studentDetails.tobe_Qual in "Graduation" %}
+                        <div style="border: 1px solid red;padding:10px;margin:0px 5px; background:red;"></div>
+                        {% else %}
+                        <div class="redBorder"></div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            <div class="itemContainer ">
+                <div class="label">Copy :</div>
+                <div class="whiteDataValue"></div>
+            </div>
+            <div class="itemContainer ">
+                <div class="label">Photo :</div>
+                <div class="whiteDataValue"></div>
+            </div>
+
+            <div class="itemContainer_spaceAbove ">
+                <div class="label">Student Signature :</div>
+
+            </div>
+
+            <div class="itemContainer_spaceAbove ">
+                <div class="label">Parent Signature :</div>
+
+            </div>
+
+              <div class="printSpace"></div>
+              <div class="printSpace"></div>
+              <div class="printSpace"></div>
+
+            <div class="centerlabel header">
+
+                <center>
+                    <div class="label ">FOR OFFICE USE ONLY</div>
+                </center>
+
+            </div>
+
+            <div class="itemContainer ">
+                <div class="label">27. Photo :</div>
+                <div class="whiteDataValue"></div>
+            </div>
+
+            <div class="itemContainer ">
+                <div class="label">28. Duration :</div>
+                <div class="whiteDataValue"></div>
+            </div>
+
+            <div class="itemContainer ">
+                <div class="label">29. Course Fee :</div>
+                <div class="whiteDataValue"></div>
+            </div>
+            <div class="itemContainer ">
+                <div class="label">30. Deposit Rs :</div>
+                <div class="whiteDataValue"></div>
+            </div>
+            <div class="itemContainer fullWidth">
+                <div class="label">31. Batch Time :</div>
+                <div class="whiteDataValue"></div>
+            </div>
+
+                <div class="itemContainer_spaceAbove ">
+                <div class="label">Student Signature :</div>
+
+            </div>
+
+            <div class="itemContainer_spaceAbove ">
+                <div class="label">Parent Signature :</div>
+
+            </div>
+        </div>
+
+
+        <img style="height: 150px;width: 150px; border: 2px solid red;"
+             src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}/{{studentDetails.imageData}}">
+    </div>
+
+</div>
+
+{% else %}
+Authentication Required <a href="adminHome">Go to Login</a>
+
+{% endif %}
+
+
+{% endblock %}

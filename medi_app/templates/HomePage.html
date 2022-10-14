@@ -70,6 +70,7 @@ color:gray;
               background: #918d8d80;
               display:flex;
               opacity:1;
+              cursor:pointer;
           }
 
 
@@ -1016,16 +1017,16 @@ var url = new URL('{{ request.scheme }}://{{ request.get_host }}/home/getGallery
               clone=galleryItem
               else
              clone = galleryItem.cloneNode(true);
-console.log(galleryParent.querySelector("#fullView"))
+console.log(clone)
 
 
-     galleryParent.querySelector("#fullView").addEventListener('click', function(clone1) {
+     clone.querySelector("#fullView").addEventListener('click', function() {
 
                  location.href = "{{ request.scheme }}://{{ request.get_host }}"+data.galleryImages[i].imageData;
 
             });
 
-             galleryParent.querySelector("#More").addEventListener('click', function(clone1) {
+             clone.querySelector("#More").addEventListener('click', function() {
 
                  location.href = "{{ request.scheme }}://{{ request.get_host }}"+"/home/gallery_page";
 

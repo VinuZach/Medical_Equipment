@@ -54,3 +54,15 @@ text-transform: uppercase;
  text-decoration: none;
 
 }
+
+       @media only screen and (max-width: 600px)
+    {
+
+   #Appicon
+            {
+             width:80%;
+             margin:0px;
+
+
+            }
+    }

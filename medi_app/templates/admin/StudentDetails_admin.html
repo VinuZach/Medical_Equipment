@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 
-
+{% if user.is_authenticated  %}
 <!--        gallery section-->
 <div id="galleryContainer" style="align-items: center; justify-content: center;margin: 5% 0px;align-content: stretch;
                       flex-direction: row;height:500px">
@@ -18,7 +18,7 @@
     justify-content: flex-end;">
         <div style="display: flex;flex-direction: row;">
             <button style="margin:10px" onclick="prevPage({{prevOffset}})">Prev</button>
-            <div style="margin:10px">123</div>
+            <div style="margin:10px">{{index}}</div>
             <button style="margin:10px" onclick="nextPage({{nextOffset}})">Next</button>
         </div>
 
@@ -26,7 +26,8 @@
     <div id="galleryParent"
          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr));justify-content: center; gap: 10px;    margin: 3%;">
         {% for student in studentDetails %}
-        <div id="galleryItem" style="padding: 10px;border: 2px solid #0d24ff; margin: 10px;">
+        <div id="galleryItem" style="padding: 10px;border: 2px solid #0d24ff; margin: 10px;"
+             onclick="displayIndividualStudent({{student.id}})">
             <div style="text-transform: capitalize; font-size: 28px; color: gray;">{{student.student_name}}</div>
             <div>{{student.selectedCourse}}</div>
             <br>
@@ -38,8 +39,16 @@
         {% endfor %}
     </div>
 
+    <form method="POST" style="display:none" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input id="stu" name="studentID">
+        <button id="submitButton" type="submit"></button>
+    </form>
 </div>
+{% else %}
+Authentication Required <a href="adminHome">Go to Login</a>
 
+{% endif %}
 <script>
 
     function nextPage(nextOffset){
@@ -51,6 +60,19 @@ console.log(nextOffset)
 console.log(prevOffset)
 	window.location.href = '{{ request.scheme }}://{{ request.get_host }}'+'/home/health_admin_studentDetails/'+prevOffset;
 }
+
+function displayIndividualStudent(studentID)
+{
+
+console.log(studentID)
+studentSubmit=document.getElementById("stu");
+submitButton=document.getElementById("submitButton");
+
+studentSubmit.value=studentID
+console.log(studentSubmit)
+submitButton.click()
+}
+
 
 </script>
 {% endblock %}

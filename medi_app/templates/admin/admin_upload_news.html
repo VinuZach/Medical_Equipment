@@ -1,13 +1,13 @@
-{% extends "baseHhtml.html" %}
+{% extends "admin/admin_base.html" %}
 {% block content %}
 {% load static %}
 
-
+{% if user.is_authenticated  %}
    <form method="POST" enctype="multipart/form-data" style="border-bottom: 1px groove #0a0a0a;
                                                                     padding-bottom: 7px;
                                                                     text-align: center;
                                                                     padding: 10px;">
-                            <input id="text" type="text" placeholder="Enter headline " autocomplete="off"
+                            <input id="text" type="text" placeholder="Enter News Heading " autocomplete="off"
                                    required="True"
                                    name="headerData"
                                    style="padding-bottom: 10px;
@@ -29,4 +29,9 @@
 
 
                         </form>
+
+{% else %}
+Authentication Required <a href="adminHome">Go to Login</a>
+
+{% endif %}
 {% endblock %}

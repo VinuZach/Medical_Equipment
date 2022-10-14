@@ -13,6 +13,8 @@ urlpatterns += [
     path("health_admin", uploadNews_admin),
     path("health_admin_gallery", uploadGallery_admin),
     path("health_admin_studentDetails/<int:offset>", displayStudents),
+    path("adminHome", adminLogin),
+
 ]
 
 # api links

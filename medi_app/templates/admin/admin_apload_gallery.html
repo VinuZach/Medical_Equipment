@@ -4,40 +4,82 @@
 
 <div>Upload Gallery Image</div>
 
+<style>
+    #newCategory
+    {
+    display:none;
+    }
 
+
+</style>
+
+{% if user.is_authenticated  %}
 <form method="POST" enctype="multipart/form-data" style="border-bottom: 1px groove #0a0a0a;
                                                                     padding-bottom: 7px;
                                                                     text-align: center;
                                                                     padding: 10px;">
 
-    <select name="sectionId" required >
-        <option>New</option>
-        {% for section in gallerySections%}
-        <option  value="{{section.id}}">{{section.galleryTitle}}</option>
-        {% endfor %}
-    </select>
+    <div style="display: flex;
+    justify-content: center;">
+        <select id="gallerySection" name="sectionId" required style="    margin: 20px;padding:10px">
+            <option disabled selected>Choose Gallery Section</option>
+            <option value="New">New Gallery Name</option>
+            {% for section in gallerySections%}
+            <option value="{{section.id}}">{{section.galleryTitle}}</option>
+            {% endfor %}
+        </select>
 
 
-    <input id="text" type="text" placeholder="Enter headline " autocomplete="off"
-           required="True"
-           name="headerData"
-           style="padding-bottom: 10px;
-                                                                                    padding-top: 10px;
-                                                                                    padding-left: 40px;
-                                                                                    padding-right: 40px;
-                                                                                    margin: 5px;
-                                                                                    position: relative;
-                                                                                    width: 70%;
+        <input id="newCategory" type="text" placeholder="Enter New Gallery Section " autocomplete="off"
+               name="headerData"
+               style="padding-bottom: 10px;padding-top: 10px;padding-left: 40px; padding-right: 40px;margin: 5px;position: relative;width: 70%;
                                                                                 }"/>
+
+    </div>
     <br>
     {% csrf_token %}
 
     <label id="getFileLabel" for="getFile">Open File</label>
-    <input id="getFile" type="file" name="document" required="True"/>
+    <input id="getFile" type="file" name="document" required="True" style="margin: 10px;"/>
 
+    <br>
+    <br>
+    <br>
 
-    <button type="submit">Upload</button>
+    <button style="   background: var(--selected_text_color);
+    padding: 2% 10%;
+    color: white;
+    font-size: 20px;" type="submit">Upload
+    </button>
 
 
 </form>
+{% else %}
+Authentication Required <a href="adminHome">Go to Login</a>
+
+{% endif %}
+
+<script>
+
+    const el = document.getElementById('gallerySection');
+    const newCategoryName = document.getElementById('newCategory');
+    el.addEventListener('change', function() {
+
+    if("New"==el.value)
+    {
+    console.log("inside")
+    newCategoryName.style.display="block"
+    newCategoryName.setAttribute('required', '');
+    }
+    else
+    {
+     newCategoryName.style.display="none"
+ newCategoryName.removeAttribute('required');
+}
+});
+
+
+
+
+</script>
 {% endblock %}

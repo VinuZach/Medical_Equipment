@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from django.contrib.auth import login, authenticate, logout
 
 # Create your views here.
 
@@ -54,7 +55,7 @@ def displayStudentRegistration(request):
             father_name = request.POST.get("father_name")
             fa_occupation = request.POST.get("fa_occupation")
             gender = request.POST.get("gender")
-            category = request.POST.get("category")
+            caste_category = request.POST.get("category")
             P_address = request.POST.get("P_address")
             Per_address = request.POST.get("Per_address")
             caste = request.POST.get("caste")
@@ -81,7 +82,7 @@ def displayStudentRegistration(request):
             print(fa_occupation)
             print(father_name)
             print(gender)
-            print(category)
+            print(caste_category)
             print(P_address)
             print(Per_address)
             print(caste)
@@ -101,6 +102,7 @@ def displayStudentRegistration(request):
             uploaded_file = request.FILES['document']
             StudentDetails.objects.create(joining_date=joing_date, joining_time=joing_time, student_name=stud_name,
                                           student_DOB=stu_date, student_mother_name=mother_name,
+                                          student_caste_category=caste_category,
                                           student_mother_occup=ma_occupation, student_father_name=father_name,
                                           student_father_occup=fa_occupation, student_gender=gender,
                                           presentAddress=P_address, permanentAddress=Per_address, caste=caste,
@@ -128,18 +130,48 @@ def uploadNews_admin(request):
     return render(request, 'admin/admin_upload_news.html', {})
 
 
-def displayStudents(request, offset):
-    print(offset)
-    if offset is None:
-        offset = 0
-    studentDetails = StudentDetails.objects.all()[offset:10]
-    prevOffset = offset - 10
-    if prevOffset < 0:
-        prevOffset = 0
-    offset += 10
+def adminLogin(request):
+    user = None
+    if request.user.is_authenticated:
+        user = request.user
+    if request.method == "POST":
+        userName = request.POST.get("username")
+        password = request.POST.get("password")
 
-    return render(request, 'admin/StudentDetails_admin.html',
-                  {"studentDetails": studentDetails, "nextOffset": offset, "prevOffset": prevOffset})
+        user = authenticate(request, email=userName, password=password)
+        print(user)
+        if user is not None:
+            login(request, user)
+        else:
+            print("user is not authenticated")
+    return render(request, 'admin/admin_home.html', {"user": user})
+
+
+def displayStudents(request, offset):
+    if request.method == "POST":
+        print("inside")
+        studentDetails = request.POST.get("studentID")
+        print(studentDetails)
+        studentDetails = StudentDetails.objects.get(id=studentDetails)
+        return render(request, 'admin/individualStudent_admin.html', {"studentDetails": studentDetails})
+    else:
+        print(offset)
+        index = 1
+        if offset is None:
+            index = 1
+            offset = 0
+        else:
+            if offset != 0:
+                index = (offset / 10) + 1
+        studentDetails = StudentDetails.objects.all()[offset:10]
+        prevOffset = offset - 10
+        if prevOffset < 0:
+            prevOffset = 0
+        offset += 10
+
+        return render(request, 'admin/StudentDetails_admin.html',
+                      {"studentDetails": studentDetails, "nextOffset": offset, "prevOffset": prevOffset,
+                       "index": int(index)})
 
 
 def uploadGallery_admin(request):
@@ -153,7 +185,10 @@ def uploadGallery_admin(request):
             sectionId = request.POST.get("sectionId")
             uploaded_file = request.FILES['document']
             print(sectionId)
-            selectedSection = GallerySections.objects.get(id=sectionId)
+            if sectionId == "New":
+                selectedSection = GallerySections.objects.create(galleryTitle=text)
+            else:
+                selectedSection = GallerySections.objects.get(id=sectionId)
             GalleryImages.objects.create(gallery_section=selectedSection, imageData=uploaded_file)
 
         except Exception as e:

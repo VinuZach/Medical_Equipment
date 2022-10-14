@@ -49,7 +49,7 @@ class StudentDetails(models.Model):
     student_father_name = models.CharField(max_length=50)
     student_father_occup = models.CharField(max_length=50)
     student_gender = models.CharField(max_length=10)
-
+    student_caste_category = models.CharField(max_length=20, default="General")
     presentAddress = models.CharField(max_length=50)
     permanentAddress = models.CharField(max_length=50)
     caste = models.CharField(max_length=20)

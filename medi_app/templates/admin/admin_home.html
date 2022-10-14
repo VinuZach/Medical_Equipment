@@ -1,0 +1,21 @@
+{% extends "admin/admin_base.html" %}
+{% block content %}
+{% load static %}
+
+{% if user.is_authenticated  %}
+Welcome {{user.email}}
+<a href="health_admin_gallery">Gallery</a>
+<a href="health_admin_studentDetails/0">Student List</a>
+<a href="health_admin">News</a>
+
+{% else %}
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <button type="submit">Log In</button>
+</form>
+{% endif %}
+
+
+{% endblock %}
