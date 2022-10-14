@@ -2,6 +2,7 @@
 {% block content %}
 {% load static %}
 
+<a href="adminHome">Home</a>
 <div>Upload Gallery Image</div>
 
 <style>
@@ -14,6 +15,7 @@
 </style>
 
 {% if user.is_authenticated  %}
+
 <form method="POST" enctype="multipart/form-data" style="border-bottom: 1px groove #0a0a0a;
                                                                     padding-bottom: 7px;
                                                                     text-align: center;
