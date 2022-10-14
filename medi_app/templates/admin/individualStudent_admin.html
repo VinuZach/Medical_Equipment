@@ -1,4 +1,4 @@
-{% extends "baseHhtml.html" %}
+{% extends "admin/admin_base.html" %}
 {% block content %}
 {% load static %}
 
@@ -173,6 +173,7 @@ display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr)); gap:
     {
     background: grey;
     }
+
   @media print {
 
 
@@ -287,12 +288,14 @@ display:block;
       }
 
 
+
 </style>
 
 {% if user.is_authenticated  %}
 <div style="border-top: 2px solid blue;margin: 0px 10px;padding: 10px;    display: flex;
     flex-direction: column;">
-    <center style="color: var(--selected_text_color); font-size: 30px; margin:10px;   text-decoration: underline;">ADMISSION FORM
+    <center style="color: var(--selected_text_color); font-size: 30px; margin:10px;   text-decoration: underline;">
+        ADMISSION FORM
     </center>
 
     <div id="dataBody">
@@ -417,7 +420,7 @@ display:block;
                 <div class="label">19.Blood Group :</div>
                 <div class="dataValue">{{studentDetails.blood_group}}</div>
             </div>
-            <div class="printSpace"></div>
+
             <div class="itemContainer fullWidth">
                 <div class="label">20.Name of Last School Attended :</div>
                 <div class="dataValue">{{studentDetails.last_attended_school}}</div>
@@ -455,6 +458,7 @@ display:block;
                 </div>
 
             </div>
+                  <div class="printSpace"></div>
             <div class="itemContainer fullWidth">
                 <div class="label">22.Year of Passing :</div>
                 <div class="dataValue">{{studentDetails.year_of_passing}}</div>

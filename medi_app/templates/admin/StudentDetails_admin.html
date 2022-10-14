@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 
-<a href="adminHome">Home</a>
+
 {% if user.is_authenticated  %}
 <!--        gallery section-->
 <div id="galleryContainer" style="align-items: center; justify-content: center;margin: 5% 0px;align-content: stretch;
@@ -17,15 +17,31 @@
 
     <div style="display: flex;margin-right:2%;
     justify-content: flex-end;">
-        <div style="display: flex;flex-direction: row;">
-            <button style="margin:10px" onclick="prevPage({{prevOffset}})">Prev</button>
-            <div style="margin:10px">{{index}}</div>
-            <button style="margin:10px" onclick="nextPage({{nextOffset}})">Next</button>
+        <div style="display: flex;flex-direction: row;    align-items: center;">
+            <button style="margin:10px;    margin: 10px;
+    background: var(--selected_text_color);
+    color: white;
+    padding: 10px 25px;
+    font-weight: 600;" onclick="prevPage({{prevOffset}})">Prev
+            </button>
+            <div style="margin:10px;height:fit-content;">{{index}}</div>
+            {% if studentDetails|length > 0 %}
+            <button style="margin:10px;    margin: 10px;
+    background: var(--selected_text_color);
+    color: white;
+    padding: 10px 25px;
+    font-weight: 600;" onclick="nextPage({{nextOffset}})">Next
+            </button>
+            {% endif %}
+
         </div>
 
     </div>
     <div id="galleryParent"
          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr));justify-content: center; gap: 10px;    margin: 3%;">
+        {% if studentDetails|length == 0 %}
+        Not Students in this index
+        {% endif %}
         {% for student in studentDetails %}
         <div id="galleryItem" style="padding: 10px;border: 2px solid #0d24ff; margin: 10px;"
              onclick="displayIndividualStudent({{student.id}})">
@@ -73,6 +89,9 @@ studentSubmit.value=studentID
 console.log(studentSubmit)
 submitButton.click()
 }
+
+
+
 
 
 

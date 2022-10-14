@@ -1,0 +1,6 @@
+{% extends "admin/admin_base.html" %}
+{% block content %}
+{% load static %}
+
+You have Logged out successfully <a href="{{ request.scheme }}://{{ request.get_host }}/home/adminHome">Home</a>
+{% endblock %}

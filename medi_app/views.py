@@ -174,6 +174,12 @@ def displayStudents(request, offset):
                        "index": int(index)})
 
 
+def logout_admin(request):
+    logout(request)
+    print("logout")
+    return render(request, 'admin/Logout_admin.html')
+
+
 def uploadGallery_admin(request):
     print("health_admin_gallery")
 

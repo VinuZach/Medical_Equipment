@@ -48,6 +48,24 @@ body
     margin: 0px 50px 0px 50px;
 }
 
+.centerMenu_admin
+{
+display: flex;flex-direction: row;justify-content: center;
+}
+
+  @media print {
+.centerMenu_admin
+{
+display:none;
+}
+.hideFromPrint
+{
+display:none;
+}
+}
+
+
+
 .text_allCaps
 {
 text-transform: uppercase;

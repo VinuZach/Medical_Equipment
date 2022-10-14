@@ -3,18 +3,40 @@
 {% load static %}
 
 {% if user.is_authenticated  %}
-Welcome {{user.email}}
-<a href="health_admin_gallery">Gallery</a>
-<a href="health_admin_studentDetails/0">Student List</a>
-<a href="health_admin">News</a>
+
+<div style=" border-top: solid;
+    padding-top: 53px;   font-weight: 600;margin-top:10px;margin-bottom: 20px;color:#2a4356;font-size: 30px; text-transform: uppercase;
+    text-align: center;">Home
+
+</div>
+<div style="    display: flex;
+    justify-content: center;">
+     <a href="{{ request.scheme }}://{{ request.get_host }}/home/">Go to Home Page </a>
+</div>
 
 {% else %}
-<form method="post">
-    {% csrf_token %}
-    <input type="text" name="username">
-    <input type="password" name="password">
-    <button type="submit">Log In</button>
-</form>
+
+
+<div style="display: flex;align-items: center;flex-direction: column">
+    <div style="    border: 1px solid red;
+    padding: 4%;">
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <div>User name: <input style="margin:10px" type="text" name="username"></div>
+                <div>Password: <input style="margin:10px" type="password" name="password"></div>
+                <button style="width: 100%;margin:10px;    padding: 10px 13px;
+    background: var(--selected_text_color);
+    color: white;" type="submit">Log In
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
 {% endif %}
 
 

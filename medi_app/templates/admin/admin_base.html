@@ -21,18 +21,53 @@
             }
     }
 
+
+.itemHover
+{
+text-transform: uppercase;
+ text-decoration: none;
+}
+.itemHover:hover
+{
+text-transform: uppercase;
+ text-decoration: underline;
+}
+
+
 </style>
 <body>
-    <div>
-        <img id="Appicon" src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/logo.jpg"
-             class="horizontal_spacing_40" style="margin:10px;">
+<div style="display: flex;
+    justify-content: space-between;
+    padding:10px;
+    align-items: center;">
+    <img id="Appicon" src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/logo.jpg"
+         class="horizontal_spacing_40" style="margin:10px;">
+    {% if user.is_authenticated %}
+    <div class="hideFromPrint">
+        Welcome {{user.email}}
+        <a href="{{ request.scheme }}://{{ request.get_host }}/home/logout_admin">logout</a>
     </div>
+    {% endif %}
+</div>
 
+{% if user.is_authenticated %}
+
+
+<div class="centerMenu_admin" >
+    <a class="itemHover horizontal_spacing_10  " href="{{ request.scheme }}://{{ request.get_host }}/home/adminHome">Home</a>
+    <a class="itemHover horizontal_spacing_10 "
+       href="{{ request.scheme }}://{{ request.get_host }}/home/health_admin_gallery">Gallery</a>
+    <a class="itemHover horizontal_spacing_10 "
+       href="{{ request.scheme }}://{{ request.get_host }}/home/health_admin_studentDetails/0">Student List</a>
+    <a class="itemHover horizontal_spacing_10 " href="{{ request.scheme }}://{{ request.get_host }}/home/health_admin">News</a>
+
+</div>
+
+{% endif %}
 {% block content %}
 
 
 {% endblock %}
-
 
 
 </body>

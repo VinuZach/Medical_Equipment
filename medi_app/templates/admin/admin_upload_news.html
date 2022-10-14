@@ -3,7 +3,15 @@
 {% load static %}
 
 {% if user.is_authenticated  %}
-   <form method="POST" enctype="multipart/form-data" style="border-bottom: 1px groove #0a0a0a;
+
+ <div style=" border-top: solid;
+    padding-top: 53px;   font-weight: 600;margin-top:10px;margin-bottom: 20px;color:#2a4356;font-size: 30px; text-transform: uppercase;
+    text-align: center;">Upload News and heading
+
+    </div>
+ <div style="display: flex;
+    justify-content: center;">
+   <form method="POST" enctype="multipart/form-data" style="
                                                                     padding-bottom: 7px;
                                                                     text-align: center;
                                                                     padding: 10px;">
@@ -22,14 +30,20 @@
                             {% csrf_token %}
 
                             <label id="getFileLabel" for="getFile">Open File</label>
-                            <input id="getFile" type="file" name="document" required="True"/>
+                            <input id="getFile" type="file" name="document" required="True"  style="margin: 10px;"/>
 
 
-                            <button type="submit">Upload</button>
 
-
+    <br>
+    <br>
+    <br>
+  <button style="   background: var(--selected_text_color);
+    padding: 2% 10%;
+    color: white;
+    font-size: 20px;" type="submit">Upload
+    </button>
                         </form>
-
+ </div>
 {% else %}
 Authentication Required <a href="adminHome">Go to Login</a>
 

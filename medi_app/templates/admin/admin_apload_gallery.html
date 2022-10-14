@@ -1,9 +1,15 @@
-{% extends "baseHhtml.html" %}
+{% extends "admin/admin_base.html" %}
 {% block content %}
 {% load static %}
 
-<a href="adminHome">Home</a>
-<div>Upload Gallery Image</div>
+
+
+ <div style=" border-top: solid;
+    padding-top: 53px;   font-weight: 600;margin-top:10px;margin-bottom: 20px;color:#2a4356;font-size: 30px; text-transform: uppercase;
+    text-align: center;">Upload Gallery Image
+
+    </div>
+
 
 <style>
     #newCategory
@@ -16,8 +22,7 @@
 
 {% if user.is_authenticated  %}
 
-<form method="POST" enctype="multipart/form-data" style="border-bottom: 1px groove #0a0a0a;
-                                                                    padding-bottom: 7px;
+<form method="POST" enctype="multipart/form-data" style="                                              padding-bottom: 7px;
                                                                     text-align: center;
                                                                     padding: 10px;">
 
