@@ -78,7 +78,7 @@ display:none;
 
     .courseItem
                   {
-                  color: var(--selected_text_color);
+                  color: black;
                   margin:0px 20px;
                       text-transform: capitalize;
                   }
@@ -96,7 +96,7 @@ display:none;
                         }
 .label
 {
-color: var(--selected_text_color);
+color: black;
   height: fit-content;
 }
     .fullWidth
@@ -154,7 +154,7 @@ display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr)); gap:
         margin-left: 10px;
         flex-grow: 1;
         padding-left:10px;
-        border-bottom: 1px dotted blue;
+        border-bottom: 1px dotted black;
         height: fit-content;
         }
 
@@ -174,8 +174,19 @@ display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr)); gap:
     background: grey;
     }
 
+     .printButton  {
+            margin:10px;    margin: 10px;
+    background: var(--selected_text_color);
+    padding: 10px 25px;
+color:white;
+font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 600;
+            }
   @media print {
 
+     .printButton  {
+          display:none;
+            }
 
 #dataBody
     {
@@ -254,7 +265,7 @@ display:block;
 }
             .label
             {
-                color: var(--selected_text_color);
+                color: black;
                 height: fit-content;
             }
 
@@ -292,11 +303,20 @@ display:block;
 </style>
 
 {% if user.is_authenticated  %}
-<div style="border-top: 2px solid blue;margin: 0px 10px;padding: 10px;    display: flex;
+<div style="margin: 0px 10px;padding: 10px;    display: flex;
     flex-direction: column;">
-    <center style="color: var(--selected_text_color); font-size: 30px; margin:10px;   text-decoration: underline;">
+        <div style="    display: flex;
+    margin: 1px 0px;
+    justify-content: flex-end;">
+
+
+                <button class="printButton" onclick="window.print();">Print</button>
+
+            </div>
+    <center style="color: black; font-size: 30px; margin:10px;   text-decoration: underline;">
         ADMISSION FORM
     </center>
+
 
     <div id="dataBody">
 
@@ -710,9 +730,13 @@ display:block;
                 <div class="label endText">Parent Signature :</div>
 
             </div>
+
+
         </div>
-        <img style="height: 150px;width: 150px; border: 2px solid red;"
+        <img style="height: 150px;width: 150px; border: 2px solid black;"
              src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}/{{studentDetails.imageData}}">
+
+
     </div>
 
 </div>

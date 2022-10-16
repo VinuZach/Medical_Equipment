@@ -10,6 +10,7 @@
 
 <style>
 
+
 .textInputType
 {
  height: 30px;
@@ -79,7 +80,17 @@ position: absolute;
 
         html,body { height: 100%; margin: 0px; padding: 0px; }
 
-
+.sideMenu
+{
+display: flex;flex-direction: column;  height: 100%;
+    background: #f2f3f7;    padding-right: 5%;    border-right:1px solid;
+}
+  @media print {
+.sideMenu
+{
+display: none;
+}
+}
 </style>
 <body>
 <div style="display: flex;
@@ -102,13 +113,10 @@ font-family: 'Open Sans', Arial, sans-serif;">
 
 
 
-
-
 <div style="display: flex;
     flex-direction: row; height: 100% ;border-top: solid;">
         {% if user.is_authenticated %}
-    <div style="display: flex;flex-direction: column;  height: 100%;
-    background: #f2f3f7;    padding-right: 5%;    border-right:1px solid; " >
+    <div class="sideMenu"  >
 
     <a class="itemHover horizontal_spacing_10  " href="{{ request.scheme }}://{{ request.get_host }}/home/adminHome">Home</a>
     <a class="itemHover horizontal_spacing_10 "
