@@ -39,7 +39,8 @@ text-transform: uppercase;
 <div style="display: flex;
     justify-content: space-between;
     padding:10px;
-    align-items: center;">
+    align-items: center;
+font-family: 'Open Sans', Arial, sans-serif;">
     <img id="Appicon" src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/logo.jpg"
          class="horizontal_spacing_40" style="margin:10px;">
     {% if user.is_authenticated %}

@@ -17,6 +17,7 @@ ul>li
      font-weight: 700;
      color: var(--unselected_text_color);
 
+font-family: 'Open Sans', Arial, sans-serif;
     }
 #menu_parent
     {
@@ -163,6 +164,7 @@ padding:10px;
     font-weight: 400;
         color: gray;
         line-height: 1.5;
+font-family: 'Open Sans', Arial, sans-serif;
 }
 
 
@@ -231,8 +233,7 @@ fieldset {
 
             <ul id="menu_parent">
                 {% for menuItem in menuLists.menuList%}
-                <li class="parentDropDown"><a href="#"
-                                              class="horizontal_spacing_10 text_allCaps menuItemHover">{{menuItem.menu_title}}</a>
+                <li class="parentDropDown"><a href="#"  class="horizontal_spacing_10 text_allCaps menuItemHover">{{menuItem.menu_title}}</a>
 
                     {% if menuItem.menu_subMenu|length > 0 %}
 
@@ -488,7 +489,8 @@ fieldset {
                 <button style="    background: var(--selected_text_color);
     padding: 2% 10%;
     color: white;
-    font-size: 20px;" type="submit">Upload
+    font-size: 20px;
+font-family: 'Open Sans', Arial, sans-serif;" type="submit">Upload
                 </button>
             </form>
 

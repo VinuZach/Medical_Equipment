@@ -22,14 +22,20 @@
     background: var(--selected_text_color);
     color: white;
     padding: 10px 25px;
+
+font-family: 'Open Sans', Arial, sans-serif;
     font-weight: 600;" onclick="prevPage({{prevOffset}})">Prev
             </button>
-            <div style="margin:10px;height:fit-content;">{{index}}</div>
+            <div style="margin:10px;height:fit-content;
+font-family: 'Open Sans', Arial, sans-serif;">{{index}}
+            </div>
             {% if studentDetails|length > 0 %}
             <button style="margin:10px;    margin: 10px;
     background: var(--selected_text_color);
     color: white;
     padding: 10px 25px;
+
+font-family: 'Open Sans', Arial, sans-serif;
     font-weight: 600;" onclick="nextPage({{nextOffset}})">Next
             </button>
             {% endif %}
@@ -45,13 +51,17 @@
         {% for student in studentDetails %}
         <div id="galleryItem" style="padding: 10px;border: 2px solid #0d24ff; margin: 10px;"
              onclick="displayIndividualStudent({{student.id}})">
-            <div style="text-transform: capitalize; font-size: 28px; color: gray;">{{student.student_name}}</div>
+            <div style="text-transform: capitalize; font-size: 28px; color: gray;
+font-family: 'Open Sans', Arial, sans-serif;">{{student.student_name}}
+            </div>
             <div>{{student.selectedCourse}}</div>
             <br>
             <br>
             <br>
-            <div><b>{{student.last_attended_school}}</b> : {{student.last_attended_school_qual}}</div>
-            <div>{{student.year_of_passing}}</div>
+            <div style="font-family: 'Open Sans', Arial, sans-serif;"><b>{{student.last_attended_school}}</b> :
+                {{student.last_attended_school_qual}}
+            </div>
+            <div style="font-family: 'Open Sans', Arial, sans-serif;">{{student.year_of_passing}}</div>
         </div>
         {% endfor %}
     </div>
@@ -89,6 +99,7 @@ studentSubmit.value=studentID
 console.log(studentSubmit)
 submitButton.click()
 }
+
 
 
 

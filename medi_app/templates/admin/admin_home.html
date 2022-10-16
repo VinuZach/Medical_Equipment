@@ -6,11 +6,13 @@
 
 <div style=" border-top: solid;
     padding-top: 53px;   font-weight: 600;margin-top:10px;margin-bottom: 20px;color:#2a4356;font-size: 30px; text-transform: uppercase;
-    text-align: center;">Home
+    text-align: center;
+font-family: 'Open Sans', Arial, sans-serif;">Home
 
 </div>
 <div style="    display: flex;
-    justify-content: center;">
+    justify-content: center;
+font-family: 'Open Sans', Arial, sans-serif;">
      <a href="{{ request.scheme }}://{{ request.get_host }}/home/">Go to Home Page </a>
 </div>
 
@@ -23,11 +25,14 @@
         <form method="post">
             {% csrf_token %}
             <div>
-                <div>User name: <input style="margin:10px" type="text" name="username"></div>
-                <div>Password: <input style="margin:10px" type="password" name="password"></div>
+                <div style="font-family: 'Open Sans', Arial, sans-serif;">User name: <input style="margin:10px;
+font-family: 'Open Sans', Arial, sans-serif;" type="text" name="username"></div>
+                <div style="font-family: 'Open Sans', Arial, sans-serif;">Password: <input style="margin:10px;
+font-family: 'Open Sans', Arial, sans-serif;" type="password" name="password"></div>
                 <button style="width: 100%;margin:10px;    padding: 10px 13px;
     background: var(--selected_text_color);
-    color: white;" type="submit">Log In
+    color: white;
+font-family: 'Open Sans', Arial, sans-serif;" type="submit">Log In
                 </button>
             </div>
 
