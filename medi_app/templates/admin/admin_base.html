@@ -9,6 +9,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+
+.textInputType
+{
+ height: 30px;
+    box-shadow: none;
+    border: 1px solid #f0f0f0;
+    font-size: 16px !important;
+    font-weight: 300;
+    width: 90%;
+    background: #f2f3f7;
+    color: #555555;
+    padding: 10px 20px;
+    margin:10px;
+font-family: 'Open Sans', Arial, sans-serif;
+}
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width:30%;
+  padding:3%;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
        @media only screen and (max-width: 600px)
     {
 
@@ -26,12 +53,31 @@
 {
 text-transform: uppercase;
  text-decoration: none;
+     padding: 10px;
 }
 .itemHover:hover
 {
 text-transform: uppercase;
  text-decoration: underline;
 }
+.overlay
+{
+position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+     background: gray;
+    border-radius: 25px;
+    padding: 2% 6%;
+
+  border: none;
+  text-align: center
+}
+
+        html,body { height: 100%; margin: 0px; padding: 0px; }
 
 
 </style>
@@ -40,6 +86,7 @@ text-transform: uppercase;
     justify-content: space-between;
     padding:10px;
     align-items: center;
+
 font-family: 'Open Sans', Arial, sans-serif;">
     <img id="Appicon" src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/logo.jpg"
          class="horizontal_spacing_40" style="margin:10px;">
@@ -54,7 +101,13 @@ font-family: 'Open Sans', Arial, sans-serif;">
 {% if user.is_authenticated %}
 
 
-<div class="centerMenu_admin" >
+
+
+{% endif %}
+<div style="display: flex;
+    flex-direction: row; height: 100% ;border-top: solid;">
+    <div style="display: flex;flex-direction: column;  height: 100%;
+    background: #f2f3f7;    padding-right: 5%;    border-right:1px solid; " >
     <a class="itemHover horizontal_spacing_10  " href="{{ request.scheme }}://{{ request.get_host }}/home/adminHome">Home</a>
     <a class="itemHover horizontal_spacing_10 "
        href="{{ request.scheme }}://{{ request.get_host }}/home/health_admin_gallery">Gallery</a>
@@ -63,12 +116,17 @@ font-family: 'Open Sans', Arial, sans-serif;">
     <a class="itemHover horizontal_spacing_10 " href="{{ request.scheme }}://{{ request.get_host }}/home/health_admin">News</a>
 
 </div>
-
-{% endif %}
-{% block content %}
+    <div style="display: flex;
+    flex-direction: column;width:100%">
+    {% block content %}
 
 
 {% endblock %}
+
+        </div>
+
+</div>
+
 
 
 </body>

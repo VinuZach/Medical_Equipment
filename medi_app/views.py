@@ -132,6 +132,7 @@ def uploadNews_admin(request):
 
 def adminLogin(request):
     user = None
+    error = ""
     if request.user.is_authenticated:
         user = request.user
     if request.method == "POST":
@@ -144,7 +145,8 @@ def adminLogin(request):
             login(request, user)
         else:
             print("user is not authenticated")
-    return render(request, 'admin/admin_home.html', {"user": user})
+            error = "Invalid Account Details"
+    return render(request, 'admin/admin_home.html', {"user": user, "error": error})
 
 
 def displayStudents(request, offset):

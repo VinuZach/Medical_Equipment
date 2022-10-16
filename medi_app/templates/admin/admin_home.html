@@ -4,34 +4,111 @@
 
 {% if user.is_authenticated  %}
 
-<div style=" border-top: solid;
-    padding-top: 53px;   font-weight: 600;margin-top:10px;margin-bottom: 20px;color:#2a4356;font-size: 30px; text-transform: uppercase;
+<style>
+
+    .container {
+  position: relative;
+  border: 1px solid black;
+  width: 50%;
+      padding: 17px 0px;
+  border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+    background-color: #b9b9b9;
+    color: white;
+    font-size: 3vw;
+    padding: 16px 32px;
+    border-radius: 10px;
+        text-transform: uppercase;
+}
+
+</style>
+<div style="
+    padding-top: 53px;   font-weight: 600;margin-bottom: 20px;color:#2a4356;font-size: 30px; text-transform: uppercase;
     text-align: center;
 font-family: 'Open Sans', Arial, sans-serif;">Home
 
 </div>
-<div style="    display: flex;
+<div style=" display: flex;
     justify-content: center;
 font-family: 'Open Sans', Arial, sans-serif;">
-     <a href="{{ request.scheme }}://{{ request.get_host }}/home/">Go to Home Page </a>
+
+
+    <div class="container">
+        <a href="{{ request.scheme }}://{{ request.get_host }}/home/">
+            <img src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/d.png" alt="Avatar"
+                 class="image" style="width:100%">
+            <div class="middle">
+                <div class="text">Redirect </div>
+            </div>
+        </a>
+    </div>
+
+
 </div>
 
 {% else %}
 
 
 <div style="display: flex;align-items: center;flex-direction: column">
-    <div style="    border: 1px solid red;
-    padding: 4%;">
+    <div style="
+    padding-top: 53px;   font-weight: 600;margin-top:10px;margin-bottom: 40px;color:#2a4356;font-size: 30px; text-transform: uppercase;
+    text-align: center;    text-decoration: underline;">Admin Login
+    </div>
+    <div class="card">
+        <div style="    text-align: center;
+    color: red;
+    font-family: 'Open Sans', Arial, sans-serif;
+    padding: 10px;
+    text-transform: uppercase;">{{error}}
+        </div>
+
         <form method="post">
             {% csrf_token %}
             <div>
-                <div style="font-family: 'Open Sans', Arial, sans-serif;">User name: <input style="margin:10px;
-font-family: 'Open Sans', Arial, sans-serif;" type="text" name="username"></div>
-                <div style="font-family: 'Open Sans', Arial, sans-serif;">Password: <input style="margin:10px;
-font-family: 'Open Sans', Arial, sans-serif;" type="password" name="password"></div>
+                <div style="font-family: 'Open Sans', Arial, sans-serif;margin-bottom:10px;"><span style="text-transform: capitalize;
+    font-weight: 800;">User name:</span> <br> <input class="textInputType" type="text" name="username"
+                                                     autocomplete="off"></div>
+                <div style="font-family: 'Open Sans', Arial, sans-serif;"><span style="text-transform: capitalize;
+    font-weight: 800;">Password:</span> <br><input class="textInputType" type="password" name="password"
+                                                   autocomplete="off"></div>
+                <br>
+
                 <button style="width: 100%;margin:10px;    padding: 10px 13px;
     background: var(--selected_text_color);
     color: white;
+        font-size: 20px;
+            font-weight: 900;
 font-family: 'Open Sans', Arial, sans-serif;" type="submit">Log In
                 </button>
             </div>
@@ -39,6 +116,7 @@ font-family: 'Open Sans', Arial, sans-serif;" type="submit">Log In
         </form>
 
     </div>
+</div>
 </div>
 
 

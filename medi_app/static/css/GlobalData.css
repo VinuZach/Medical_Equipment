@@ -8,6 +8,14 @@
   --unselected_text_color:#00000066;
 }
 
+
+
+.fontType
+{
+color:red;
+font-family: 'Open Sans', Arial, sans-serif;
+}
+
 body
 {
        background:  #ffffff;
