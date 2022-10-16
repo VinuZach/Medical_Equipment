@@ -98,16 +98,18 @@ font-family: 'Open Sans', Arial, sans-serif;">
     {% endif %}
 </div>
 
-{% if user.is_authenticated %}
 
 
 
 
-{% endif %}
+
+
 <div style="display: flex;
     flex-direction: row; height: 100% ;border-top: solid;">
+        {% if user.is_authenticated %}
     <div style="display: flex;flex-direction: column;  height: 100%;
     background: #f2f3f7;    padding-right: 5%;    border-right:1px solid; " >
+
     <a class="itemHover horizontal_spacing_10  " href="{{ request.scheme }}://{{ request.get_host }}/home/adminHome">Home</a>
     <a class="itemHover horizontal_spacing_10 "
        href="{{ request.scheme }}://{{ request.get_host }}/home/health_admin_gallery">Gallery</a>
@@ -116,6 +118,7 @@ font-family: 'Open Sans', Arial, sans-serif;">
     <a class="itemHover horizontal_spacing_10 " href="{{ request.scheme }}://{{ request.get_host }}/home/health_admin">News</a>
 
 </div>
+    {% endif %}
     <div style="display: flex;
     flex-direction: column;width:100%">
     {% block content %}
