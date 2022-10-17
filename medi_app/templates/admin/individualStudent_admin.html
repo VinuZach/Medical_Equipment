@@ -146,7 +146,7 @@ display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 0fr)); gap:
         flex-grow: 1;
         padding-left:10px;
             align-self: self-end;
-        border-bottom: 1px dotted blue;
+        border-bottom: 1px dotted black;
         height: fit-content;
         }
     .dataValue
@@ -209,7 +209,7 @@ display:flex;margin: 50px 0px;
         align-self: self-end;
         flex-grow: 1;
         padding-left:10px;
-        border-bottom: 1px dotted blue;
+        border-bottom: 1px dotted black;
         height: fit-content;
         }
 
@@ -293,7 +293,7 @@ display:block;
         margin-left: 10px;
         flex-grow: 1;
            padding-left:10px;
-        border-bottom: 1px dotted blue;
+        border-bottom: 1px dotted black;
         height: fit-content;
         font-size:12px;
         }
@@ -479,12 +479,13 @@ display:block;
                 </div>
 
             </div>
-                  <div class="printSpace"></div>
+
             <div class="itemContainer fullWidth">
                 <div class="label">22.Year of Passing :</div>
                 <div class="dataValue">{{studentDetails.year_of_passing}}</div>
             </div>
-
+ <div class="printSpace"></div>
+             <div class="printSpace"></div>
             <div class="itemContainer fullWidth">
                 <div class="label">23. Course you are choosing :</div>
                 <div id="selectedCourse_print" class="dataValue">{{studentDetails.selectedCourse}}</div>
