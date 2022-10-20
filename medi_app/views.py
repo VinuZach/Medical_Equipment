@@ -8,25 +8,41 @@ menuItems = {
     "menuList": [
         {
             "menu_title": "Home",
-            "menu_subMenu": []
+            "menu_link": 'home/',
+            "menu_subMenu": [],
+
         },
         {
             "menu_title": "About us",
-            "menu_subMenu": ["History", "Vision and Mission", "Aim and Objectives", "Specialties "]
+            "menu_link": 'home/about_us',
+            "menu_subMenu": [{"submenu_title": "History", "submenu_link": "home/about_us"},
+                             {"submenu_title": "Vision and Mission", "submenu_link": "home/about_us"},
+                             {"submenu_title": "Aim and Objectives", "submenu_link": "home/about_us"},
+                             {"submenu_title": "Specialties ", "submenu_link": "home/about_us"}]
         },
         {
             "menu_title": "Facilities",
-            "menu_subMenu": ["Campus & classrooms", "Laboratory", "Digital classroom", "Surgical instrument lab ",
-                             "Transportation", "Girls' hostel facilities ", "Library & reading rooms"]
+            "menu_link": 'home/#',
+            "menu_subMenu": [{"submenu_title": "Campus & classrooms", "submenu_link": "home/campus_and_classrooms"},
+                             {"submenu_title": "Laboratory", "submenu_link": "home/laboratory_page"},
+                             {"submenu_title": "Digital classroom", "submenu_link": "home/digital_classroom"},
+                             {"submenu_title": "Surgical instrument lab", "submenu_link": "home/about_us"},
+                             {"submenu_title": "Transportation", "submenu_link": "home/about_us"},
+                             {"submenu_title": "Girls' hostel facilities ", "submenu_link": "home/about_us"},
+                             {"submenu_title": "Library & reading rooms", "submenu_link": "home/about_us"}]
         },
         {
             "menu_title": "Students Corner",
-            "menu_subMenu": ["Clubs", "Social Activities"]
+            "menu_subMenu": [
+                {"submenu_title": "Clubs", "submenu_link": "home/about_us"},
+                {"submenu_title": "Social Activities", "submenu_link": "home/about_us"}]
         },
         {
             "menu_title": "Gallery",
-            "menu_subMenu": ["Photos", "Videos"]
-        }, {
+            "menu_subMenu": [{"submenu_title": "Photos", "submenu_link": "home/about_us"},
+                             {"submenu_title": "Videos", "submenu_link": "home/about_us"}]
+        },
+        {
             "menu_title": "Contact",
             "menu_subMenu": []
         }
@@ -41,6 +57,22 @@ def displayHome(request):
 def displayGalleryPage(request):
     gallerySections = GallerySections.objects.all()
     return render(request, 'GalleryPage.html', {"gallerySections": gallerySections})
+
+
+def displayClassesAndCampus(request):
+    return render(request, 'Campus_classroom.html', {"menuLists": menuItems})
+
+
+def displayLaboratory(request):
+    return render(request, 'labortory.html', {"menuLists": menuItems})
+
+
+def displayClassRoom(request):
+    return render(request, 'digital_classroom.html', {"menuLists": menuItems})
+
+
+def displayAboutUs(request):
+    return render(request, 'aboutus.html', {"menuLists": menuItems})
 
 
 def displayStudentRegistration(request):

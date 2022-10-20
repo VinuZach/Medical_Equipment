@@ -1,0 +1,207 @@
+{% extends "baseHhtml.html" %}
+{% block content %}
+{% load static %}
+
+
+<div class="container1">
+    <img style="width:100%;  height:800px;"
+         src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/campus.jpg"/>
+    <div class="shadowtoimage"></div>
+    <div style="position: absolute; top: 0; left: 0; color: white;margin: 10%;width: 30%;">
+        <h2 style="font-size: 58px; font-weight: 900;text-transform: uppercase; font-family: 'Open Sans', Arial, sans-serif;">
+            Campus
+        </h2>
+        <div id="campus_body">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur
+        </div>
+    </div>
+</div>
+
+
+<div id="discover_campus">
+
+    <div style="display: flex; flex-direction: column;">
+
+        <div style="padding-top: 10px;font-size: 30px;font-weight: 600;font-family: 'Open Sans', Arial, sans-serif;color:white;    width: fit-content;">
+            DISCOVER OUR<br>
+            CAMPUS
+        </div>
+        <div style="    width: 350px;
+    margin-top: 20px;
+    color: #bbbbbb;
+    padding-bottom: 40px;
+    border-bottom: 1px aliceblue solid;
+    line-height: 1.3;
+    margin-right: 58px;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur.
+        </div>
+
+        <div style="    text-align: end;
+    margin-top: 20px;
+    color: #bbbbbb;
+    padding-bottom: 40px;
+    line-height: 1.3;
+    width: 350px;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+
+        </div>
+
+    </div>
+
+
+    <div id="group_image_container">
+        <img src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/campus.jpg"
+             class="group_image image_margin"/>
+        <img src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/campus.jpg"
+             class="group_image"/>
+    </div>
+    <img src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/campus.jpg"/>
+
+</div>
+<div style="padding-top: 4%;padding-bottom: 4%;">
+
+    <div style="padding-top: 10px;font-size: 40px;font-weight: 600;font-family: 'Open Sans', Arial, sans-serif;    text-transform: uppercase;text-align: center;text-decoration: underline;">
+        Classes
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="cards">
+        <div class="card">Digital Classroom</div>
+        <a style="text-decoration: none;" href="{{ request.scheme }}://{{ request.get_host }}/home/laboratory_page">
+            <div class="card"> Laboratory</div>
+        </a>
+        <div class="card">Surgical instrument lab</div>
+        <div class="card">Library & reading rooms</div>
+        <div class="card">Feature 5</div>
+        <div class="card">Feature 6</div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+
+.card {
+  background-color: dodgerblue;
+  color: white;
+  padding: 1rem;
+  height: 4rem;
+
+}
+
+.card:hover
+ {
+color:black;
+font-weight: 900;
+background-color: dodgerblue;
+font-size:28px;
+    border: 1px #ffc300 solid
+}
+
+.cards {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  max-width: 50%;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+    .image_margin
+    {
+    margin-bottom:10px;
+    }
+    .group_image
+    {
+        height:50%;
+
+    }
+    .container1
+    {
+      position: relative;
+      width: 100%;
+      height:800px;
+    }
+     .shadowtoimage
+     {
+          position: absolute;
+          bottom: 0;
+          top:0;
+          margin-bottom: 5px;
+          background: rgba(0, 0, 0, 0.35); /* Black see-through */
+          color: #f1f1f1;
+          width: 100%;
+          height:800px;
+          transition: .5s ease;
+          opacity:1;
+          font-size: 20px;
+          text-align: center;
+    }
+
+     #group_image_container
+    {
+        display: flex;flex-direction: column;margin-left:10px;margin-right:10px;
+    }
+    #discover_campus{
+        display: flex;
+        background: var(--selected_text_color);
+        flex-direction: row;
+        padding-top:4%;
+        padding-bottom:4%;
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: 1220px)
+    {
+        #campus_body
+        {
+        font-size:12px;
+
+        }
+        .image_margin
+        {
+        margin-right:10px;
+        }
+        #discover_campus{
+            display: flex;
+            background: var(--selected_text_color);
+            flex-direction: column;
+            padding-top:4%;
+            padding-bottom:4%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #group_image_container
+        {
+            display: flex;flex-direction: row;margin-top:10px;margin-bottom:10px;
+        }
+    }
+
+     @media only screen and (max-width: 600px)
+    {
+        #campus_body
+        {
+        font-size:10px;
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+</style>
+{% endblock %}

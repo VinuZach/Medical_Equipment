@@ -226,39 +226,7 @@ fieldset {
 
 </style>
 <div>
-    <div style="display:flex;justify-content: center;">
-        <div id="top_bar">
-            <img id="icon" src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/logo.jpg"
-                 class="horizontal_spacing_40">
 
-            <ul id="menu_parent">
-                {% for menuItem in menuLists.menuList%}
-                <li class="parentDropDown"><a href="#"  class="horizontal_spacing_10 text_allCaps menuItemHover">{{menuItem.menu_title}}</a>
-
-                    {% if menuItem.menu_subMenu|length > 0 %}
-
-                    <ul class="dropdown">
-                        {% for subMenu in menuItem.menu_subMenu %}
-
-                        <li style="padding-top: 5px;padding-bottom: 5px; padding-right:10px;"><a
-                                class="submenu"
-                                href="#">{{subMenu}}
-                        </a></li>
-                        {% endfor %}
-                    </ul>
-
-                    {% endif %}
-                </li>
-
-
-                {% endfor %}
-
-
-            </ul>
-
-        </div>
-
-    </div>
 
 
     <div style="margin: 21px 10px;">

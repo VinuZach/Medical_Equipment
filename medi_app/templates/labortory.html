@@ -1,0 +1,202 @@
+{% extends "baseHhtml.html" %}
+{% block content %}
+{% load static %}
+
+
+<div>
+    <div style="display: flex;justify-content: center;flex-direction: column;    align-items: center;">
+        <h1 style="font-size: 50px;font-weight: 800; opacity: 1;font-family: 'Open Sans', Arial, sans-serif;">
+            laboratory</h1>
+
+        <div id="section_parent">
+            <div id="lab_container">
+                <div style="display: flex;align-items: center;flex-direction: column; justify-content: center; border: 1px #80808033 solid;
+                    padding: 20px; border-radius: 6px;margin:20px;  max-width: 230px;text-align: center;">
+                    <div style="font-family: 'Open Sans', Arial, sans-serif;    font-size: 30px;">Surgical instrument lab</div>
+                    <div style="max-width:200px;margin-top:20px;font-family: 'Open Sans', Arial, sans-serif;    font-size: 15px;    color: var(--unselected_text_color);">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    </div>
+                    <button onclick="displayDetails(1)" style="margin-top: 60px; padding: 10px 50px; background: var(--selected_text_color);
+                    color: white; border-radius: 10px; font-family: 'Open Sans', Arial, sans-serif;">More
+                    </button>
+                </div>
+
+                <div style="display: flex;align-items: center;flex-direction: column; justify-content: center; border: 1px #80808033 solid;
+                    padding: 20px; border-radius: 6px;margin:20px;     max-width: 230px;text-align: center;">
+                    <div style="font-family: 'Open Sans', Arial, sans-serif;    font-size: 30px;">Lab title 2</div>
+                    <div style="max-width:200px;margin-top:20px;font-family: 'Open Sans', Arial, sans-serif;    font-size: 15px;    color: var(--unselected_text_color);">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    </div>
+                    <button onclick="displayDetails(2)" style="margin-top: 60px; padding: 10px 50px; background: var(--selected_text_color);
+                    color: white; border-radius: 10px; font-family: 'Open Sans', Arial, sans-serif;">More
+                    </button>
+                </div>
+
+                <div style="display: flex;align-items: center;flex-direction: column; justify-content: center; border: 1px #80808033 solid;
+                    padding: 20px; border-radius: 6px;margin:20px;     max-width: 230px;text-align: center;">
+                    <div style="font-family: 'Open Sans', Arial, sans-serif;    font-size: 30px;">Lab title 3</div>
+                    <div style="max-width:200px;margin-top:20px;font-family: 'Open Sans', Arial, sans-serif;    font-size: 15px;    color: var(--unselected_text_color);">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    </div>
+                    <button onclick="displayDetails(3)" style="margin-top: 60px; padding: 10px 50px; background: var(--selected_text_color);
+                    color: white; border-radius: 10px; font-family: 'Open Sans', Arial, sans-serif;">More
+                    </button>
+                </div>
+
+                <div style="display: flex;align-items: center;flex-direction: column; justify-content: center; border: 1px #80808033 solid;
+                    padding: 20px; border-radius: 6px;margin:20px;     max-width: 230px;text-align: center;">
+                    <div style="font-family: 'Open Sans', Arial, sans-serif;    font-size: 30px;">Lab title 4</div>
+                    <div style="max-width:200px;margin-top:20px;font-family: 'Open Sans', Arial, sans-serif;    font-size: 15px;    color: var(--unselected_text_color);">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    </div>
+                    <button onclick="displayDetails(4)" style="margin-top: 60px; padding: 10px 50px; background: var(--selected_text_color);
+                    color: white; border-radius: 10px; font-family: 'Open Sans', Arial, sans-serif;">More
+                    </button>
+                </div>
+            </div>
+
+            <div id="labContent">
+
+                content about lab
+            </div>
+        </div>
+
+    </div>
+
+    <div id="footerText">
+        asdsad
+    </div>
+</div>
+
+
+<script>
+
+    function displayDetails(labNumber)
+    {
+        let labContent=document.querySelector("#labContent")
+        let footerText=document.querySelector("#footerText")
+        console.log(labContent.style.display)
+      switch(labNumber)
+        {
+              case 1:
+               labContent.innerHTML="content about lab 1"
+               footerText.innerHTML="content about lab 1"
+                break;
+              case 2:
+                 labContent.innerHTML="content about lab 2"
+                 footerText.innerHTML="content about lab 2"
+                break;
+              case 3:
+                 labContent.innerHTML="content about lab 3"
+                 footerText.innerHTML="content about lab 3"
+                break;
+              case 4:
+                 labContent.innerHTML="content about lab 4"
+                 footerText.innerHTML="content about lab 4"
+                break;
+              default:
+                // code block
+        }
+
+
+    }
+
+
+
+
+</script>
+<style>
+#footerText
+    {
+    display:none;
+    }
+        #labContent
+            {
+            text-align: center; margin: 50px; color: var(--selected_text_color); font-family: 'Open Sans', Arial, sans-serif;font-size: 23px; text-transform: uppercase;font-weight: 800;
+            }
+        #lab_container
+        {
+            display: flex;justify-content: center;flex-direction: row;
+        }
+         #section_parent
+         {
+                display: flex;
+                flex-direction: column;
+         }
+
+
+             @media only screen and (max-width: 1120px)
+            {
+
+            #labContent
+            {
+            text-align: center; margin: 50px; color: var(--selected_text_color); font-family: 'Open Sans', Arial, sans-serif;font-size: 23px; text-transform: uppercase;font-weight: 800;display:none;
+             position: fixed;
+             display:block;
+            right: 0;
+            }
+                #lab_container
+                {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                padding: 10px;
+                position: absolute;
+                left: 0;
+
+                }
+
+                #section_parent
+                {
+                display: flex;
+                flex-direction: row;
+                }
+         }
+
+   @media only screen and (max-width: 700px)
+             {
+
+             #footerText
+    {
+        padding: 13px;
+    text-align: center;
+    background: var(--selected_text_color);
+    color: white;
+    position: fixed;
+    bottom: 0;
+    display:block;
+    width: 100%;
+    }
+                 #labContent
+            {
+            text-align: center; margin: 50px; color: var(--selected_text_color); font-family: 'Open Sans', Arial, sans-serif;font-size: 23px; text-transform: uppercase;font-weight: 800;display:none
+             display:block;
+             position: static;
+             display:none;
+            }
+                #lab_container
+                {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                padding: 10px;
+                position: static;
+    margin-bottom: 70px;
+
+                }
+             }
+
+
+
+
+
+</style>
+{% endblock %}

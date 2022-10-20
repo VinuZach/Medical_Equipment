@@ -1,0 +1,60 @@
+{% extends "baseHhtml.html" %}
+{% block content %}
+{% load static %}
+
+
+<style>
+        #class_image{
+            width:60%;  height:600px;
+            }
+    #content_parent
+    {
+    display: flex; flex-direction: row; margin: 80px;
+    }
+
+
+        @media only screen and (max-width: 1180px)
+    {
+
+        #content_parent{
+                display: flex; flex-direction: column-reverse; margin: 80px;
+                    align-items: center;
+         }
+
+             #class_image{
+              width:80%;  height:80%;
+            }
+    }
+
+
+
+
+
+</style>
+<div id="content_parent">
+    <div>
+            <span style="font-size: 80px;
+    font-weight: 900;font-family: 'Open Sans', Arial, sans-serif;">Digital</span><br>
+        <span style="font-size: 45px;font-family: 'Open Sans', Arial, sans-serif;font-style: italic;    color: var(--selected_text_color);">Classroom</span>
+
+        <div style="margin-top:150px;    text-align: justify;color: #727272">
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore
+            magna aliqua. Ut enim ad minim veniam,
+        </div>
+
+        <button style="background: #0d24ff;color: #fff; margin: 20px;width: fit-content; border-radius: 100px;
+          font-family: 'Open Sans', Arial, sans-serif; border: 2px solid #0d24ff; font-size: 12px; padding: 20px 60px;    cursor: pointer;
+              text-transform: uppercase;margin-top:130px;"
+                onclick="window.location.href='{{ request.scheme }}://{{ request.get_host }}/home/student_registration'">
+            Register now
+        </button>
+    </div>
+
+    <img id="class_image"
+         src="{{ request.scheme }}://{{ request.get_host }}{{MEDIA_URL}}static_images/digitalclassroom.png"/>
+
+
+</div>
+{% endblock %}
