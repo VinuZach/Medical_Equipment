@@ -10,7 +10,12 @@ urlpatterns = [
     path("about_us", displayAboutUs),
     path("campus_and_classrooms", displayClassesAndCampus),
     path("laboratory_page", displayLaboratory),
-    path("digital_classroom", displayClassRoom)
+    path("digital_classroom", displayClassRoom),
+    path("surgical_lab", displaySurgicalLab),
+    path("girls_hostel", displayGirlsHostel),
+    path("library_reading", displayLibrary),
+    path("clubs_social_media", displaySocialmedia),
+    path("transportation", displayTransportationPage)
 ]
 # admin pages
 urlpatterns += [

@@ -1,0 +1,96 @@
+{% extends "baseHhtml.html" %}
+{% block content %}
+{% load static %}
+
+<div>
+    <div style="display: flex;flex-direction: column; align-items: center;">
+        <span style="font-size: 80px;font-weight: 900;font-family: 'Open Sans', Arial, sans-serif;">Library &</span><br>
+        <span style="font-size: 45px;font-family: 'Open Sans', Arial, sans-serif;font-style: italic;    color: var(--selected_text_color);">Reading room</span>
+    </div>
+
+    <div id="bottom_container">
+
+
+        <div style="padding: 4%; text-align: center;font-size: 40px; background: var(--selected_text_color);
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: white;">Books Available in Topic
+        </div>
+
+        <div id="list_container">
+            <div class="item_container">
+                <span>Medicine</span>
+            </div>
+
+            <div class="item_container">
+                <span>Radiology</span>
+            </div>
+
+            <div class="item_container">
+                <span>Surgery</span>
+            </div>
+
+            <div class="item_container">
+                <span>Dermatology/skin.</span>
+            </div>
+            <div class="item_container">
+                <span>Psychiatry.</span>
+            </div>
+            <div class="item_container">
+                <span>Cytology.</span>
+            </div>
+
+            <div class="item_container">
+                <span>
+Patient Safety</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    .item_container{
+            padding:6% 4%; margin:1px;   width: fit-content;      background: white;   border: 5px black solid
+            }
+   #bottom_container {
+    position: absolute; bottom: 0; width: 100%;
+    width: 100%;
+    background: var(--selected_text_color);
+    font-family: 'Open Sans', Arial, sans-serif;
+    }
+           #list_container
+        {
+        display: flex;justify-content: space-evenly;
+        overflow-x: auto;
+         padding: 10px 164px;
+         flex-direction: row;
+        }
+
+          @media only screen and (max-width: 1140px)
+      {
+            #list_container
+        {
+        display: flex;justify-content: space-evenly;
+        overflow-x: auto;
+         padding: 10px 164px;
+         flex-direction: column;
+        }
+
+           #bottom_container {
+position:static;
+  width: 100%;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+display: flex;
+    background: var(--selected_text_color);
+    font-family: 'Open Sans', Arial, sans-serif;
+    }
+
+        .item_container{
+            padding:6% 4%; margin:1px;       width: 300px;   background: white;   border: 5px black solid
+            }
+      }
+
+</style>
+{% endblock %}

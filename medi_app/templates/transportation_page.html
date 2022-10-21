@@ -1,0 +1,88 @@
+{% extends "baseHhtml.html" %}
+{% block content %}
+{% load static %}
+
+<h1 style="font-size: 50px;font-weight: 800; opacity: 1;font-family: 'Open Sans', Arial, sans-serif;margin: 2%;">
+    Transportation</h1>
+
+<div style="color: var(--selected_text_color); font-size: 30px;font-weight: 800;text-transform: uppercase;    text-align: center;">
+    Bus service
+</div>
+<div class="cards">
+    <div class="card">
+
+        <div class="value_heading">Available Number of buses</div>
+
+        <div class="value_text">5</div>
+    </div>
+
+    <div class="card">
+        <div class="value_heading">Total Number of seats</div>
+
+        <div class="value_text">800</div>
+    </div>
+    <div class="card">
+        <div class="value_heading">Total Number of Trips</div>
+
+        <div class="value_text">2</div>
+    </div>
+    <div class="card">
+        <div class="value_heading">Timing</div>
+
+        <div class="value_text">
+            <div style="font-size:18px">
+                 8 Am and 9 Am <br>
+            5 Am and 6 Am
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<style>
+
+    .value_heading {
+            font-size: 20px;
+    text-transform: uppercase;
+        text-align: center;
+        }
+     .value_text{
+        color: var(--selected_text_color);
+        font-size: 50px;
+        font-weight: 900;
+        font-family: 'Open Sans', Arial, sans-serif;
+        }
+
+.card {
+    display: flex;
+
+    color: black;
+    padding: 2rem;
+    height: 4rem;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.cards {
+  max-width: 1100px;
+  margin: 3% auto;
+  display: grid;
+  padding: 16px;
+    border: 1px blue solid;
+  gap: 1rem;
+
+  max-width: 50%;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+
+
+
+
+
+
+</style>
+{% endblock %}

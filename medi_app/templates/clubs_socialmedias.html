@@ -1,0 +1,85 @@
+{% extends "baseHhtml.html" %}
+{% block content %}
+{% load static %}
+
+<div id="content_parent">
+    <div>
+            <span style="font-size: 80px;
+    font-weight: 900;font-family: 'Open Sans', Arial, sans-serif;">Clubs</span><br>
+        <span style="font-size: 45px;font-family: 'Open Sans', Arial, sans-serif;font-style: italic;    color: var(--selected_text_color);">Social Activities</span>
+
+        <div style="margin-top:150px;width:400px;    text-align: justify;color: #727272">
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore
+            magna aliqua. Ut enim ad minim veniam,
+        </div>
+
+        <button style="background: #0d24ff;color: #fff; margin: 20px;width: fit-content; border-radius: 100px;
+          font-family: 'Open Sans', Arial, sans-serif; border: 2px solid #0d24ff; font-size: 12px; padding: 20px 60px;    cursor: pointer;
+              text-transform: uppercase;margin-top:130px;">
+            Register now
+        </button>
+
+
+    </div>
+    <div style="display: flex;flex-direction: row;
+    align-items: center;margin:40px;">
+
+        <div class="item_container">
+            Social club
+        </div>
+        <div class="item_container">
+            Science club
+
+        </div>
+        <div class="item_container">
+            Nature club
+
+
+        </div>
+    </div>
+</div>
+
+<style>
+
+
+   .item_container  {
+            background: var(--selected_text_color);
+    color: white;
+    padding: 30px;
+    font-family: 'Open Sans', Arial, sans-serif;
+    border-radius: 18px;
+    margin:10px;
+    text-transform: uppercase;
+        }
+        #content_parent
+    {
+    display: flex; flex-direction: row; margin: 80px;
+    }
+
+            @media only screen and (max-width: 1180px)
+    {
+
+        #content_parent{
+                display: flex; flex-direction: column-reverse; margin: 80px;
+                    align-items: center;
+         }
+
+
+           .item_container  {
+            background: var(--selected_text_color);
+            color: white;
+            font-size:12px;
+            padding: 30px;
+            font-family: 'Open Sans', Arial, sans-serif;
+            border-radius: 18px;
+            margin:5px;
+            text-transform: uppercase;
+        }
+   }
+
+
+
+</style>
+{% endblock %}

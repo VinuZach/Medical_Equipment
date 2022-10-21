@@ -1,0 +1,112 @@
+{% extends "baseHhtml.html" %}
+{% block content %}
+{% load static %}
+<style>
+
+.card {
+    text-align: center;
+  color: black;
+  padding: 1rem;
+  height: 4rem;
+      background: white;
+}
+    #content_item
+            {
+            background: #f2f3f7;padding: 4% 1%;
+            }
+.cards {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+       #facilities_container
+        {
+          flex-direction: row;margin-top:70px;display: flex;align-items: center;
+        }
+  #main_content
+            {
+            height: 500px; background: var(--selected_text_color);color: white;font-family: 'Open Sans', Arial, sans-serif;width: 30%;border-radius: 10px;padding: 12px;
+            }
+ @media only screen and (max-width: 1500px)
+ {
+    #facilities_container
+        {
+          flex-direction: column;margin-top:70px;display: flex;align-items: center;
+        }
+
+          #main_content
+            {
+            height: 500px; background: var(--selected_text_color);color: white;font-family: 'Open Sans', Arial, sans-serif;width: 700px;border-radius: 10px;padding: 12px;
+            }
+
+                #content_item
+            {
+            background: #f2f3f7;padding: 4% 1%;    width: 400px;
+            }
+ }
+
+ @media only screen and (max-width: 700px)
+ {
+    #facilities_container
+        {
+          flex-direction: column;margin-top:70px;display: flex;align-items: center;
+        }
+
+          #main_content
+            {
+            height: 500px; background: var(--selected_text_color);color: white;font-family: 'Open Sans', Arial, sans-serif;width: 300px;border-radius: 10px;padding: 12px;
+            }
+
+                #content_item
+            {
+            background: #f2f3f7;padding: 4% 1%;    width: 200px;
+            }
+
+
+            .card {
+    text-align: center;
+    color: black;
+    padding: 1rem;
+    height: 8rem;
+    background: white;
+    width: 50%;
+}
+ }
+
+
+</style>
+<div style="display:flex;justify-content: center;font-family: 'Open Sans', Arial, sans-serif;">
+    <div style="width: 80%;margin-top:2%">
+        <h2 style="font-size: 30px; font-weight: 900;text-transform: uppercase; color: #000;font-family: sans-serif;font-family: 'Open Sans', Arial, sans-serif;">
+            Girls Hostel</h2>
+
+        <div id="facilities_container">
+
+            <div id="main_content">
+                <h2>Hostel Facilities</h2>
+                <br>
+                <br>
+                <br>
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            </div>
+
+            <div id="content_item">
+                <div class="cards">
+                    <div class="card">ONE</div>
+                    <div class="card">TWO</div>
+                    <div class="card">THREE</div>
+                    <div class="card">FOUR</div>
+                    <div class="card">FOUR</div>
+                    <div class="card">FOUR</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

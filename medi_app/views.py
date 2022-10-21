@@ -26,24 +26,27 @@ menuItems = {
             "menu_subMenu": [{"submenu_title": "Campus & classrooms", "submenu_link": "home/campus_and_classrooms"},
                              {"submenu_title": "Laboratory", "submenu_link": "home/laboratory_page"},
                              {"submenu_title": "Digital classroom", "submenu_link": "home/digital_classroom"},
-                             {"submenu_title": "Surgical instrument lab", "submenu_link": "home/about_us"},
-                             {"submenu_title": "Transportation", "submenu_link": "home/about_us"},
-                             {"submenu_title": "Girls' hostel facilities ", "submenu_link": "home/about_us"},
-                             {"submenu_title": "Library & reading rooms", "submenu_link": "home/about_us"}]
+                             {"submenu_title": "Surgical instrument lab", "submenu_link": "home/surgical_lab"},
+                             {"submenu_title": "Transportation", "submenu_link": "home/transportation"},
+                             {"submenu_title": "Girls' hostel facilities ", "submenu_link": "home/girls_hostel"},
+                             {"submenu_title": "Library & reading rooms", "submenu_link": "home/library_reading"}]
         },
         {
             "menu_title": "Students Corner",
+            "menu_link": 'home/#',
             "menu_subMenu": [
-                {"submenu_title": "Clubs", "submenu_link": "home/about_us"},
-                {"submenu_title": "Social Activities", "submenu_link": "home/about_us"}]
+                {"submenu_title": "Clubs", "submenu_link": "home/clubs_social_media"},
+                {"submenu_title": "Social Activities", "submenu_link": "home/clubs_social_media"}]
         },
         {
             "menu_title": "Gallery",
-            "menu_subMenu": [{"submenu_title": "Photos", "submenu_link": "home/about_us"},
-                             {"submenu_title": "Videos", "submenu_link": "home/about_us"}]
+            "menu_link": 'home/gallery_page',
+            "menu_subMenu": [{"submenu_title": "Photos", "submenu_link": "home/gallery_page"},
+                             {"submenu_title": "Videos", "submenu_link": "home/gallery_page"}]
         },
         {
             "menu_title": "Contact",
+            "menu_link": 'home/#',
             "menu_subMenu": []
         }
     ]
@@ -69,6 +72,26 @@ def displayLaboratory(request):
 
 def displayClassRoom(request):
     return render(request, 'digital_classroom.html', {"menuLists": menuItems})
+
+
+def displaySurgicalLab(request):
+    return render(request, 'surgical_instrument_lab.html', {"menuLists": menuItems})
+
+
+def displayTransportationPage(request):
+    return render(request, 'transportation_page.html', {"menuLists": menuItems})
+
+
+def displayLibrary(request):
+    return render(request, 'library_reading_room.html', {"menuLists": menuItems})
+
+
+def displaySocialmedia(request):
+    return render(request, 'clubs_socialmedias.html', {"menuLists": menuItems})
+
+
+def displayGirlsHostel(request):
+    return render(request, 'girls_hostal_page.html', {"menuLists": menuItems})
 
 
 def displayAboutUs(request):
