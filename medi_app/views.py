@@ -22,7 +22,7 @@ menuItems = {
         },
         {
             "menu_title": "Facilities",
-            "menu_link": 'home/#',
+            "menu_link": 'home/campus_and_classrooms',
             "menu_subMenu": [{"submenu_title": "Campus & classrooms", "submenu_link": "home/campus_and_classrooms"},
                              {"submenu_title": "Laboratory", "submenu_link": "home/laboratory_page"},
                              {"submenu_title": "Digital classroom", "submenu_link": "home/digital_classroom"},
@@ -33,7 +33,7 @@ menuItems = {
         },
         {
             "menu_title": "Students Corner",
-            "menu_link": 'home/#',
+            "menu_link": 'home/clubs_social_media',
             "menu_subMenu": [
                 {"submenu_title": "Clubs", "submenu_link": "home/clubs_social_media"},
                 {"submenu_title": "Social Activities", "submenu_link": "home/clubs_social_media"}]
@@ -59,7 +59,7 @@ def displayHome(request):
 
 def displayGalleryPage(request):
     gallerySections = GallerySections.objects.all()
-    return render(request, 'GalleryPage.html', {"gallerySections": gallerySections})
+    return render(request, 'GalleryPage.html', {"gallerySections": gallerySections,"menuLists": menuItems})
 
 
 def displayClassesAndCampus(request):

@@ -25,9 +25,9 @@
     }
 
     .sidenav a {
-  padding: 8px 8px 8px 0px;
+  padding: 1px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 20px;
   color: #818181;
   display: block;
   transition: 0.3s;
@@ -325,11 +325,11 @@ ul>li
     {% for menuItem in menuLists.menuList%}
     <ul id="sidemenulist">
         <li onmouseover="showSubMenu_inMed_inSmall_screen()">
-            <a href="#" class="sidemenu">{{menuItem.menu_title}}</a>
+            <a href="{{ request.scheme }}://{{ request.get_host }}/{{menuItem.menu_link}}" class="sidemenu">{{menuItem.menu_title}}</a>
             {% if menuItem.menu_subMenu|length > 0 %}
             {% for subMenu in menuItem.menu_subMenu %}
             <ul class="sidemenu_submenu">
-                <li><a href="#">{{subMenu}}</a></li>
+                <li><a href="{{ request.scheme }}://{{ request.get_host }}/{{subMenu.submenu_link}}">{{subMenu.submenu_title}}</a></li>
             </ul>
             {% endfor %}
             {% endif %}
@@ -358,7 +358,7 @@ ul>li
             }
             else
             {
-           // nav_bar.style.width = "100%"
+            nav_bar.style.width = "100%"
             }
       }
 
