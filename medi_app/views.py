@@ -46,7 +46,7 @@ menuItems = {
         },
         {
             "menu_title": "Contact",
-            "menu_link": 'home/#',
+            "menu_link": 'home/#contact_details',
             "menu_subMenu": []
         }
     ]
